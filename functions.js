@@ -132,7 +132,7 @@ function notification(parameters) {
             <div class="swal2-html-container" id="swal2-html-container" style="display: block;">` + body + `</div>
             <div class="swal2-actions" style="display: flex;">
                 <div class="swal2-loader"></div>
-                ` + (redirect_url ? `<a href="` + redirect_url + `" onclick="$('#notification').remove();" class="swal2-confirm btn fw-bold btn-light-primary" aria-label="" style="display: inline-block;">` + (button_text ? button_text : 'Schließen') + `</a>` : `<button type="button" onclick="$('#notification').remove();" class="swal2-confirm btn fw-bold btn-light-primary" aria-label="" style="display: inline-block;">` + (button_text ? button_text : 'Schließen') + `</button>`) + `
+                ` + (redirect_url ? `<a href="` + redirect_url + `" onclick="$('#notification').remove();" class="swal2-confirm btn fw-bold btn-light-primary" aria-label="" style="display: inline-block;">` + (button_text ? button_text : 'Close') + `</a>` : `<button type="button" onclick="$('#notification').remove();" class="swal2-confirm btn fw-bold btn-light-primary" aria-label="" style="display: inline-block;">` + (button_text ? button_text : 'Close') + `</button>`) + `
             </div>
         </div>
     </div>`);
