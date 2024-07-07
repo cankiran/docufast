@@ -20,6 +20,11 @@
 		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<!-- Custom JS -->
+		<script src="functions.js"></script>
+		<script>session_token_check();</script>
 	</head>
 	<body id="kt_body" class="app-blank">
 		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
@@ -49,18 +54,24 @@
 										<h1 class="text-gray-900 mb-3 fs-3x" data-kt-translate="sign-in-title">Sign in</h1>
 										<div class="text-gray-500 fw-semibold fs-6" data-kt-translate="general-desc">Welcome back, enter you email and password to sign in</div>
 									</div>
-									<div class="fv-row mb-8">
-										<input type="text" placeholder="Email" name="email" autocomplete="off" data-kt-translate="sign-in-input-email" class="form-control form-control-solid" />
+									<div class="fv-row mb-7">
+										<input id="email" type="text" placeholder="Email" autocomplete="off" class="form-control form-control-solid" />
 									</div>
 									<div class="fv-row mb-7">
-										<input type="text" placeholder="Password" name="password" autocomplete="off" data-kt-translate="sign-in-input-password" class="form-control form-control-solid" />
+										<input id="password" type="password" placeholder="Password" autocomplete="off" class="form-control form-control-solid" />
 									</div>
 									<div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-10">
 										<div></div>
 										<a href="forgot-password.html" class="link-primary" data-kt-translate="sign-in-forgot-password">Forgot Password?</a>
 									</div>
 									<div class="d-flex flex-stack">
-										<button id="kt_sign_in_submit" class="btn btn-primary me-2 flex-shrink-0">Sign in</button>
+										<button type="button" class="btn btn-primary me-2 flex-shrink-0" onclick="api_request('POST', 'session', {
+											email: $('#email').val(),
+											password: $('#password').val()
+										}, (response) => {
+											localStorage.setItem('session_token', response.session_token);
+											window.location.href = 'guides.html';
+										});">Sign in</button>
 										<div class="d-flex align-items-center">
 											<div class="text-gray-500 fw-semibold fs-6 me-3 me-md-6" data-kt-translate="general-or">Or</div>
 											<a href="#" class="symbol symbol-circle symbol-45px w-45px bg-light me-3">

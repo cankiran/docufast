@@ -23,6 +23,10 @@
 		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<!-- Custom JS -->
+		<script src="functions.js"></script>
 	</head>
 	<body id="kt_app_body" data-kt-app-header-fixed="true" data-kt-app-header-fixed-mobile="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
 		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
@@ -237,7 +241,7 @@
 										</div>
 										<div class="separator my-2"></div>
 										<div class="menu-item px-5">
-											<a href="#" class="menu-link px-5">Sign Out</a>
+											<a href="#" onclick="session_token_delete()" class="menu-link px-5">Sign Out</a>
 										</div>
 									</div>
 								</div>
@@ -336,11 +340,25 @@
 														<h3 class="fw-normal m-0 text-gray-800">
 															How to create XYZ
 														</h3>
-														<span class="badge badge-secondary mx-3">Created by Berkay Cankiran</span>
+														<!-- <span class="badge badge-secondary mx-3">Created by Berkay Cankiran</span> -->
 													</div> 
 												</div>
 												<div class="card-body">
-													<label class="form-label">Tags:</label>
+													<div class="d-flex flex-wrap mb-5">
+														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
+															<div class="fs-6 text-gray-800 fw-bold">3 minutes</div>
+															<div class="fw-semibold text-gray-500">Duration</div>
+														</div>
+														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
+															<div class="fs-6 text-gray-800 fw-bold">5</div>
+															<div class="fw-semibold text-gray-500">Steps</div>
+														</div>
+														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4">
+															<div class="fs-6 text-gray-800 fw-bold">Berkay Cankiran</div>
+															<div class="fw-semibold text-gray-500">Creator</div>
+														</div>
+													</div>
+													<!-- <label class="form-label">Tags</label> -->
 													<span class="badge badge-secondary fs-5 fw-normal">tag1</span>
 													<span class="badge badge-secondary fs-5 fw-normal">tag2</span>
 													<span class="badge badge-secondary fs-5 fw-normal">tag3</span>
@@ -354,12 +372,26 @@
 														<h3 class="fw-normal m-0 text-gray-800">
 															<input type="text" class="form-control" placeholder="How to create XYZ" value="How to create XYZ">
 														</h3>
-														<span class="badge badge-secondary mx-3">Created by Berkay Cankiran</span>
+														<!-- <span class="badge badge-secondary mx-3">Created by Berkay Cankiran</span> -->
 													</div> 
 												</div>
 												<div class="card-body">
+													<div class="d-flex flex-wrap mb-5">
+														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
+															<div class="fs-6 text-gray-800 fw-bold"><input type="text" class="form-control" placeholder="3 minutes" value="3 minutes"></div>
+															<div class="fw-semibold text-gray-500">Duration</div>
+														</div>
+														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
+															<div class="fs-6 text-gray-800 fw-bold">5</div>
+															<div class="fw-semibold text-gray-500">Steps</div>
+														</div>
+														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4">
+															<div class="fs-6 text-gray-800 fw-bold">Berkay Cankiran</div>
+															<div class="fw-semibold text-gray-500">Creator</div>
+														</div>
+													</div>
 													<div>
-														<label class="form-label">Tags</label>
+														<!-- <label class="form-label">Tags</label> -->
 														<input class="form-control" value="tag1, tag2, tag3" id="edit-tags"/>
 													</div>
 												</div>
@@ -407,7 +439,7 @@
 													</div>
 												</div>
 												<div class="card-body">
-													<img class="w-100 shadow-sm" style="border-radius:10px;" src="https://colony-recorder.s3-accelerate.amazonaws.com/files/2024-06-24/52b8129b-6e45-41f0-b9b7-c9c33cf37da6/ascreenshot.jpeg?AWSAccessKeyId=AKIA2JDELI43YPETRQSC&Signature=Y3kXXMNpEPZURAJ2XRPlxVuRVvo%3D&Expires=1720024557">
+													<img class="w-100 shadow-sm" style="border-radius:10px;" src="https://mytaagbucket.s3.eu-central-1.amazonaws.com/user-files/17201779835GF69kU87xYizewdomGrD7e1WpCEY3/Screenshot%202024-07-05%20131216.png">
 												</div>
 											</div>
 
@@ -424,7 +456,7 @@
 													</div>
 												</div>
 												<div class="card-body">
-													<img class="w-100 shadow-sm" style="border-radius:10px; opacity:30%;" src="https://colony-recorder.s3-accelerate.amazonaws.com/files/2024-06-24/52b8129b-6e45-41f0-b9b7-c9c33cf37da6/ascreenshot.jpeg?AWSAccessKeyId=AKIA2JDELI43YPETRQSC&Signature=Y3kXXMNpEPZURAJ2XRPlxVuRVvo%3D&Expires=1720024557">
+													<img class="w-100 shadow-sm" style="border-radius:10px; opacity:30%;" src="https://mytaagbucket.s3.eu-central-1.amazonaws.com/user-files/17201779835GF69kU87xYizewdomGrD7e1WpCEY3/Screenshot%202024-07-05%20131216.png">
 													<div style="position:absolute; top:50%; left:42%;">
 														<a href="#" class="btn btn-flex btn-center btn-color-white h-35px h-md-40px btn-sm px-6" style="background:#6a23ff;">
 															<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -450,7 +482,7 @@
 															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">3</text>
 														</svg>
 														<h3 class="fw-normal m-0 text-gray-800">
-															Type "ABC"
+															Type 'ABC'
 														</h3>
 													</div>
 												</div>
@@ -464,7 +496,7 @@
 															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">3</text>
 														</svg>
 														<h3 class="fw-normal m-0 text-gray-800 w-100">
-															<input type="text" class="form-control" placeholder="Click on 'XYZ'" value="Click on 'XYZ'">
+															<input type="text" class="form-control" placeholder="Type 'ABC'" value="Type 'ABC'">
 														</h3>
 													</div>
 												</div>

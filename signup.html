@@ -20,6 +20,11 @@
 		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<!-- Custom JS -->
+		<script src="functions.js"></script>
+		<script>session_token_check();</script>
 	</head>
 	<body id="kt_body" class="app-blank">
 		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
@@ -48,21 +53,21 @@
 									<h1 class="text-gray-900 mb-3 fs-3x" data-kt-translate="sign-up-title">Create an Account</h1>
 									<div class="text-gray-500 fw-semibold fs-6" data-kt-translate="general-desc">Enter your details to sign up</div>
 								</div>
-								<div class="row fv-row mb-7">
-									<div class="col-xl-6">
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="First Name" name="first-name" autocomplete="off" data-kt-translate="sign-up-input-first-name" />
+								<div class="row fv-row">
+									<div class="col-xl-6 mb-7">
+										<input id="first_name" class="form-control form-control-lg form-control-solid" type="text" placeholder="First Name" autocomplete="off" data-kt-translate="sign-up-input-first-name" />
 									</div>
-									<div class="col-xl-6">
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="Last Name" name="last-name" autocomplete="off" data-kt-translate="sign-up-input-last-name" />
+									<div class="col-xl-6 mb-7">
+										<input id="last_name" class="form-control form-control-lg form-control-solid" type="text" placeholder="Last Name" autocomplete="off" data-kt-translate="sign-up-input-last-name" />
 									</div>
 								</div>
-								<div class="fv-row mb-10">
-									<input class="form-control form-control-lg form-control-solid" type="email" placeholder="Email" name="email" autocomplete="off" data-kt-translate="sign-up-input-email" />
+								<div class="fv-row mb-7">
+									<input id="email" class="form-control form-control-lg form-control-solid" type="email" placeholder="Email" autocomplete="off" data-kt-translate="sign-up-input-email" />
 								</div>
 								<div class="fv-row mb-10" data-kt-password-meter="true">
 									<div class="mb-1">
 										<div class="position-relative mb-3">
-											<input class="form-control form-control-lg form-control-solid" type="password" placeholder="Password" name="password" autocomplete="off" data-kt-translate="sign-up-input-password" />
+											<input id="password" class="form-control form-control-lg form-control-solid" type="password" placeholder="Password" autocomplete="off" data-kt-translate="sign-up-input-password" />
 											<span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
 												<i class="ki-duotone ki-eye-slash fs-2"></i>
 												<i class="ki-duotone ki-eye fs-2 d-none"></i>
@@ -77,11 +82,16 @@
 									</div>
 									<div class="text-muted" data-kt-translate="sign-up-hint">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
 								</div>
-								<div class="fv-row mb-10">
-									<input class="form-control form-control-lg form-control-solid" type="password" placeholder="Confirm Password" name="confirm-password" autocomplete="off" data-kt-translate="sign-up-input-confirm-password" />
-								</div>
 								<div class="d-flex flex-stack">
-									<button id="kt_sign_up_submit" class="btn btn-primary" data-kt-translate="sign-up-submit">Sign up</button>
+									<button type="button" class="btn btn-primary" onclick="api_request('POST', 'user', {
+										first_name: $('#first_name').val(),
+										last_name: $('#last_name').val(),
+										email: $('#email').val(),
+										password: $('#password').val()
+									}, (response) => {
+										localStorage.setItem('session_token', response.session_token);
+										window.location.href = 'guides.html';
+									});">Sign up</button>
 									<div class="d-flex align-items-center">
 										<div class="text-gray-500 fw-semibold fs-6 me-6">Or</div>
 										<a href="#" class="symbol symbol-circle symbol-45px w-45px bg-light me-3">
