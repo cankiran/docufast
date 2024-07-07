@@ -153,10 +153,8 @@
 													<img alt="Logo" src="https://mytaag.s3.eu-central-1.amazonaws.com/user-files/1706466537vPMKf33v6vxrB3KNRTI8o8fixBHDA3/memoji-1-white.jpg" />
 												</div>
 												<div class="d-flex flex-column">
-													<div class="fw-bold d-flex align-items-center fs-5">
-														Berkay Cankiran
-													</div>
-													<a href="#" class="fw-semibold text-muted text-hover-primary fs-7">berkay@email.com</a>
+													<div class="user-name fw-bold d-flex align-items-center fs-5"></div>
+													<a href="#" class="user-email fw-semibold text-muted text-hover-primary fs-7"></a>
 												</div>
 											</div>
 										</div>
@@ -569,6 +567,16 @@
 				</div>
 			</div>
 		</div>
+
+		<script>
+			api_request('GET', 'user', {
+				session_token: session_token_get()
+			}, (response) => {
+				$('.user-name').html(response.user.first_name + ' ' + response.user.last_name);
+				$('.user-email').html(response.user.email);
+			});	
+		</script>
+
 		<!--begin::Javascript-->
 		<script>var hostUrl = "assets/";</script>
 		<!--begin::Global Javascript Bundle(mandatory for all pages)-->

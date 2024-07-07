@@ -276,14 +276,14 @@
 												<li class="breadcrumb-item">
 													<i class="ki-duotone ki-right fs-3 text-gray-500 mx-n1"></i>
 												</li>
-												<li class="breadcrumb-item text-gray-600 fw-bold lh-1">Guides</li>
+												<li class="breadcrumb-item text-gray-600 fw-bold lh-1">Settings</li>
 												<li class="breadcrumb-item">
 													<i class="ki-duotone ki-right fs-3 text-gray-500 mx-n1"></i>
 												</li>
-												<li class="breadcrumb-item text-gray-600 fw-bold lh-1">How to create XYZ</li>
+												<li class="breadcrumb-item text-gray-600 fw-bold lh-1">Account</li>
 											</ul>
 											<div class="page-title d-flex align-items-center me-3">
-												<h1 class="page-heading d-flex text-gray-900 fw-bolder fs-1 flex-column justify-content-center me-2">Guide: How to create XYZ</h1>
+												<h1 class="page-heading d-flex text-gray-900 fw-bolder fs-1 flex-column justify-content-center me-2">Account settings</h1>
 												<h1 class="page-heading d-flex text-gray-900 fw-normal fs-1 flex-column justify-content-center"></h1>
 											</div>
 										</div>
@@ -329,177 +329,93 @@
 								<div class="app-content">
 									<div class="row g-6 g-xl-9">
 
-										<div class="col-md-10 col-lg-8 col-xl-5 mx-auto">
-
-											<div class="step-element card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center">
-														<img src="https://mytaag.s3.eu-central-1.amazonaws.com/static/images/black.png" width="50px" class="me-3">
-														<h3 class="fw-normal m-0 text-gray-800">
-															How to create XYZ
-														</h3>
-														<!-- <span class="badge badge-secondary mx-3">Created by Berkay Cankiran</span> -->
-													</div> 
+										<div class="col-12 col-lg-8 mx-auto">
+											<div class="card mb-5 mb-xl-10">
+												<div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
+													<div class="card-title m-0">
+														<h3 class="fw-bold m-0">Account settings</h3>
+													</div>
 												</div>
-												<div class="card-body">
-													<div class="d-flex flex-wrap mb-5">
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
-															<div class="fs-6 text-gray-800 fw-bold">3 minutes</div>
-															<div class="fw-semibold text-gray-500">Duration</div>
+												<div id="kt_account_settings_profile_details" class="collapse show">
+													<form id="kt_account_profile_details_form" class="form">
+														<div class="card-body border-top p-9">
+															<div class="row mb-6">
+																<label class="col-lg-4 col-form-label fw-semibold fs-6">Profile image</label>
+																<div class="col-lg-8">
+																	<div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
+																		<div class="image-input-wrapper w-125px h-125px" style="background-image: url(assets/media/avatars/300-1.jpg)"></div>
+																		<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
+																			<i class="ki-duotone ki-pencil fs-7">
+																				<span class="path1"></span>
+																				<span class="path2"></span>
+																			</i>
+																			<input type="file" name="image" accept=".png, .jpg, .jpeg" />
+																			<input type="hidden" name="image_remove" />
+																		</label>
+																		<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel image">
+																			<i class="ki-duotone ki-cross fs-2">
+																				<span class="path1"></span>
+																				<span class="path2"></span>
+																			</i>
+																		</span>
+																		<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove image">
+																			<i class="ki-duotone ki-cross fs-2">
+																				<span class="path1"></span>
+																				<span class="path2"></span>
+																			</i>
+																		</span>
+																	</div>
+																	<div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+																</div>
+															</div>
+															<div class="row mb-6">
+																<label class="col-lg-4 col-form-label fw-semibold fs-6">Full Name</label>
+																<div class="col-lg-8">
+																	<div class="row">
+																		<div class="col-lg-6 fv-row">
+																			<input type="text" name="fname" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="First name"/>
+																		</div>
+																		<div class="col-lg-6 fv-row">
+																			<input type="text" name="lname" class="form-control form-control-lg form-control-solid" placeholder="Last name"/>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="row mb-6">
+																<label class="col-lg-4 col-form-label fw-semibold fs-6">Email</label>
+																<div class="col-lg-8 fv-row">
+																	<input type="text" class="form-control form-control-lg form-control-solid" placeholder="Email"/>
+																</div>
+															</div>
+															<div class="row mb-6">
+																<label class="col-lg-4 col-form-label fw-semibold fs-6">Allow marketing emails</label>
+																<div class="col-lg-8 d-flex align-items-center">
+																	<div class="form-check form-check-solid form-switch form-check-custom fv-row">
+																		<input class="form-check-input w-45px h-30px" type="checkbox" id="allowmarketing" checked="checked" />
+																		<label class="form-check-label" for="allowmarketing"></label>
+																	</div>
+																</div>
+															</div>
+															<div class="row mb-0">
+																<label class="col-lg-4 col-form-label fw-semibold fs-6">Reset password</label>
+																<div class="col-lg-8 fv-row">
+																	<button type="button" class="form-control w-50 form-control-solid" onclick="api_request('POST', 'user/password', {
+																		session_token: session_token_get()
+																	}, (response) => {
+																		notification({
+																			body: 'We sent you an email with a link to reset your password. Please check your inbox and spam folder.'
+																		});
+																	});">Send reset password link</button>
+																</div>
+															</div>
 														</div>
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
-															<div class="fs-6 text-gray-800 fw-bold">5</div>
-															<div class="fw-semibold text-gray-500">Steps</div>
+														<div class="card-footer d-flex justify-content-end py-6 px-9">
+															<button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
+															<button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
 														</div>
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4">
-															<div class="fs-6 text-gray-800 fw-bold">Berkay Cankiran</div>
-															<div class="fw-semibold text-gray-500">Creator</div>
-														</div>
-													</div>
-													<!-- <label class="form-label">Tags</label> -->
-													<span class="badge badge-secondary fs-5 fw-normal">tag1</span>
-													<span class="badge badge-secondary fs-5 fw-normal">tag2</span>
-													<span class="badge badge-secondary fs-5 fw-normal">tag3</span>
+													</form>
 												</div>
-											</div>
-
-											<div class="step-element d-none card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center">
-														<img src="https://mytaag.s3.eu-central-1.amazonaws.com/static/images/black.png" width="50px" class="me-3">
-														<h3 class="fw-normal m-0 text-gray-800">
-															<input type="text" class="form-control" placeholder="How to create XYZ" value="How to create XYZ">
-														</h3>
-														<!-- <span class="badge badge-secondary mx-3">Created by Berkay Cankiran</span> -->
-													</div> 
-												</div>
-												<div class="card-body">
-													<div class="d-flex flex-wrap mb-5">
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
-															<div class="fs-6 text-gray-800 fw-bold"><input type="text" class="form-control" placeholder="3 minutes" value="3 minutes"></div>
-															<div class="fw-semibold text-gray-500">Duration</div>
-														</div>
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
-															<div class="fs-6 text-gray-800 fw-bold">5</div>
-															<div class="fw-semibold text-gray-500">Steps</div>
-														</div>
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4">
-															<div class="fs-6 text-gray-800 fw-bold">Berkay Cankiran</div>
-															<div class="fw-semibold text-gray-500">Creator</div>
-														</div>
-													</div>
-													<div>
-														<!-- <label class="form-label">Tags</label> -->
-														<input class="form-control" value="tag1, tag2, tag3" id="edit-tags"/>
-													</div>
-												</div>
-											</div>
-
-											<div class="step-element card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center">
-														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-															<circle cx="50" cy="50" r="40" fill="#6a23ff"/>
-															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">1</text>
-														</svg>
-														<h3 class="fw-normal m-0 text-gray-800">
-															Navigate to
-															<a href="https://web.taag.co/company/profiles" target="_blank"><span class="badge badge-lg badge-primary">https://web.taag.co/company/profiles</span></a>
-														</h3>
-													</div>
-												</div>
-											</div>
-
-											<div class="step-element d-none card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center w-100">
-														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-															<circle cx="50" cy="50" r="40" fill="#6a23ff"/>
-															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">1</text>
-														</svg>
-														<h3 class="fw-normal m-0 text-gray-800 w-100">
-															<input type="text" class="form-control" placeholder="Navigate to https://web.taag.co/company/profiles" value="Navigate to https://web.taag.co/company/profiles">
-														</h3>
-													</div>
-												</div>
-											</div>
-
-											<div class="step-element card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center">
-														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-															<circle cx="50" cy="50" r="40" fill="#6a23ff"/>
-															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">2</text>
-														</svg>
-														<h3 class="fw-normal m-0 text-gray-800">
-															Click on 'XYZ'
-														</h3>
-													</div>
-												</div>
-												<div class="card-body">
-													<img class="w-100 shadow-sm" style="border-radius:10px;" src="https://mytaagbucket.s3.eu-central-1.amazonaws.com/user-files/17201779835GF69kU87xYizewdomGrD7e1WpCEY3/Screenshot%202024-07-05%20131216.png">
-												</div>
-											</div>
-
-											<div class="step-element d-none card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center w-100">
-														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-															<circle cx="50" cy="50" r="40" fill="#6a23ff"/>
-															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">2</text>
-														</svg>
-														<h3 class="fw-normal m-0 text-gray-800 w-100">
-															<input type="text" class="form-control" placeholder="Click on 'XYZ'" value="Click on 'XYZ'">
-														</h3>
-													</div>
-												</div>
-												<div class="card-body">
-													<img class="w-100 shadow-sm" style="border-radius:10px; opacity:30%;" src="https://mytaagbucket.s3.eu-central-1.amazonaws.com/user-files/17201779835GF69kU87xYizewdomGrD7e1WpCEY3/Screenshot%202024-07-05%20131216.png">
-													<div style="position:absolute; top:50%; left:42%;">
-														<a href="#" class="btn btn-flex btn-center btn-color-white h-35px h-md-40px btn-sm px-6" style="background:#6a23ff;">
-															<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																<defs/>
-																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																	<rect x="0" y="0" width="24" height="24"/>
-																	<path fill="#fff" d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z" fill-rule="nonzero" opacity="0.8"/>
-																	<rect fill="#fff" opacity="0.8" x="11" y="2" width="2" height="14" rx="1"/>
-																	<path fill="#fff" d="M12.0362375,3.37797611 L7.70710678,7.70710678 C7.31658249,8.09763107 6.68341751,8.09763107 6.29289322,7.70710678 C5.90236893,7.31658249 5.90236893,6.68341751 6.29289322,6.29289322 L11.2928932,1.29289322 C11.6689749,0.916811528 12.2736364,0.900910387 12.6689647,1.25670585 L17.6689647,5.75670585 C18.0794748,6.12616487 18.1127532,6.75845471 17.7432941,7.16896473 C17.3738351,7.57947475 16.7415453,7.61275317 16.3310353,7.24329415 L12.0362375,3.37797611 Z" fill-rule="nonzero"/>
-																</g>
-															</svg>
-															<span class="ms-2">Replace</span>
-														</a>
-													</div>
-												</div>
-											</div>
-											
-											<div class="step-element card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center">
-														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-															<circle cx="50" cy="50" r="40" fill="#6a23ff"/>
-															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">3</text>
-														</svg>
-														<h3 class="fw-normal m-0 text-gray-800">
-															Type 'ABC'
-														</h3>
-													</div>
-												</div>
-											</div>
-											
-											<div class="step-element d-none card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center w-100">
-														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-															<circle cx="50" cy="50" r="40" fill="#6a23ff"/>
-															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">3</text>
-														</svg>
-														<h3 class="fw-normal m-0 text-gray-800 w-100">
-															<input type="text" class="form-control" placeholder="Type 'ABC'" value="Type 'ABC'">
-														</h3>
-													</div>
-												</div>
-											</div>
-											
+											</div>	
 										</div>
 
 									</div>
