@@ -394,7 +394,7 @@
 															</div>
 														</div>
 														<div class="card-footer d-flex justify-content-end py-6 px-9">
-															<button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
+															<button type="button" onclick="loadUser();" class="btn btn-light btn-active-light-primary me-2">Discard</button>
 															<button type="button" class="btn btn-primary" onclick="api_request('PUT', 'user', {
 																session_token: session_token_get(),
 																first_name: $('#first_name').val(),
@@ -402,8 +402,7 @@
 																image: $('#image_url').val(),
 																email: $('#email').val()
 															}, (response) => {
-																$('.user-name').html(response.user.first_name + ' ' + response.user.last_name);
-																$('.user-email').html(response.user.email);
+																loadUser();
 																notification({
 																	body: 'Your account settings have been updated.'
 																});
@@ -424,20 +423,23 @@
 		</div>
 
 		<script>
-			api_request('GET', 'user', {
-				session_token: session_token_get()
-			}, (response) => {
-				// load user
-				$('.user-name').html(response.user.first_name + ' ' + response.user.last_name);
-				$('.user-email').html(response.user.email);
-				$('.user-image').attr('src', (response.user.image ? response.user.image : 'assets/media/svg/avatars/blank.svg'));
-				// load user (page)
-				$('#first_name').val(response.user.first_name);
-				$('#last_name').val(response.user.last_name);
-				$('#email').val(response.user.email);
-				$('#image_url').val(response.user.image);
-				$('.image-input-wrapper').css('background-image', 'url(' + (response.user.image ? response.user.image : 'assets/media/svg/avatars/blank.svg') + ')');
-			});	
+			function loadUser() {
+				api_request('GET', 'user', {
+					session_token: session_token_get()
+				}, (response) => {
+					// load user
+					$('.user-name').html(response.user.first_name + ' ' + response.user.last_name);
+					$('.user-email').html(response.user.email);
+					$('.user-image').attr('src', (response.user.image ? response.user.image : 'assets/media/svg/avatars/blank.svg'));
+					// load user (page)
+					$('#first_name').val(response.user.first_name);
+					$('#last_name').val(response.user.last_name);
+					$('#email').val(response.user.email);
+					$('#image_url').val(response.user.image);
+					$('.image-input-wrapper').css('background-image', 'url(' + (response.user.image ? response.user.image : 'assets/media/svg/avatars/blank.svg') + ')');
+				});	
+			}
+			loadUser();
 		</script>
 
 		<!--begin::Javascript-->
