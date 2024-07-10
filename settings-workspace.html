@@ -64,7 +64,7 @@
 									<div class="menu-item">
 										<span class="menu-link">
 											<span class="menu-title">
-												<a href="guides.html" class="menu-title-link-active">Guides</a>	
+												<a href="guides.html" class="menu-title-link">Guides</a>	
 											</span>
 											<span class="menu-arrow d-lg-none"></span>
 										</span>
@@ -82,7 +82,7 @@
 									<div class="menu-item">
 										<span class="menu-link">
 											<span class="menu-title">
-												<a href="settings-workspace.html" class="menu-title-link">Workspace settings</a>	
+												<a href="settings-workspace.html" class="menu-title-link-active">Workspace settings</a>	
 											</span>
 											<span class="menu-arrow d-lg-none"></span>
 										</span>
@@ -325,203 +325,104 @@
 												<li class="breadcrumb-item">
 													<i class="ki-duotone ki-right fs-3 text-gray-500 mx-n1"></i>
 												</li>
-												<li class="breadcrumb-item text-gray-600 fw-bold lh-1">Guides</li>
+												<li class="breadcrumb-item text-gray-600 fw-bold lh-1">Settings</li>
+												<li class="breadcrumb-item">
+													<i class="ki-duotone ki-right fs-3 text-gray-500 mx-n1"></i>
+												</li>
+												<li class="breadcrumb-item text-gray-600 fw-bold lh-1">Workspace</li>
 											</ul>
 											<div class="page-title d-flex align-items-center me-3">
-												<h1 class="page-heading d-flex text-gray-900 fw-bolder fs-1 flex-column justify-content-center my-0">Guides</h1>
+												<h1 class="page-heading d-flex text-gray-900 fw-bolder fs-1 flex-column justify-content-center me-2">Workspace settings</h1>
+												<h1 class="page-heading d-flex text-gray-900 fw-normal fs-1 flex-column justify-content-center"></h1>
 											</div>
-										</div>
-										<div class="d-flex align-items-center gap-3 gap-lg-5">
-											<div class="m-0">
-												<a href="#" class="btn btn-flex btn-sm h-35px h-md-40px btn-light fw-bold px-6" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Filter</a>
-												<div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_667827f09eb33">
-													<div class="px-7 py-5">
-														<div class="fs-5 text-gray-900 fw-bold">Filter Options</div>
-													</div>
-													<div class="separator border-gray-200"></div>
-													<div class="px-7 py-5">
-														<div class="mb-5">
-															<label class="form-label fw-semibold">Status:</label>
-															<div>
-																<select class="form-select form-select-solid" multiple="multiple" data-kt-select2="true" data-close-on-select="false" data-placeholder="Select option" data-dropdown-parent="#kt_menu_667827f09eb33" data-allow-clear="true">
-																	<option></option>
-																	<option value="0">Draft</option>
-																	<option value="1">Published</option>
-																</select>
-															</div>
-														</div>
-														<div class="mb-5">
-															<label class="form-label fw-semibold">Creator:</label>
-															<div>
-																<select class="form-select form-select-solid" multiple="multiple" data-kt-select2="true" data-close-on-select="false" data-placeholder="Select option" data-dropdown-parent="#kt_menu_667827f09eb33" data-allow-clear="true">
-																	<option></option>
-																	<option value="1">Max Mustermann</option>
-																	<option value="2">Berkay Cankiran</option>
-																</select>
-															</div>
-														</div>
-														<div class="mb-5">
-															<label class="form-label fw-semibold">Tags:</label>
-															<div>
-																<select class="form-select form-select-solid" multiple="multiple" data-kt-select2="true" data-close-on-select="false" data-placeholder="Select option" data-dropdown-parent="#kt_menu_667827f09eb33" data-allow-clear="true">
-																	<option></option>
-																	<option value="1">Tag 1</option>
-																	<option value="2">Tag 2</option>
-																</select>
-															</div>
-														</div>
-														<!-- <div class="mb-10">
-															<label class="form-label fw-semibold">Member Type:</label>
-															<div class="d-flex">
-																<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																	<input class="form-check-input" type="checkbox" value="1" />
-																	<span class="form-check-label">Author</span>
-																</label>
-																<label class="form-check form-check-sm form-check-custom form-check-solid">
-																	<input class="form-check-input" type="checkbox" value="2" checked="checked" />
-																	<span class="form-check-label">Customer</span>
-																</label>
-															</div>
-														</div> -->
-														<div class="d-flex justify-content-end">
-															<button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true">Reset</button>
-															<button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
-														</div>
-													</div>
-												</div>
-											</div>
-											<a href="#" class="btn btn-flex btn-center bg-gray-600 btn-color-white h-35px h-md-40px btn-active-dark btn-sm px-6" data-bs-toggle="modal" data-bs-target="#kt_modal_invite_friends">
-												<i class="ki-duotone ki-plus-square fs-2 p-0 m-0">
-													<span class="path1"></span>
-													<span class="path2"></span>
-													<span class="path3"></span>
-												</i>
-												<span class="ms-2">Create guide</span>
-											</a>
 										</div>
 									</div>
 								</div>
 								<div class="app-content">
 									<div class="row g-6 g-xl-9">
 
-										<div class="col-md-6 col-xl-4">
-											<a href="guide.html" class="card border-hover-primary">
-												<div class="card-header border-0 pt-9">
+										<div class="col-12 col-lg-8 mx-auto">
+											<div class="card mb-5 mb-xl-10">
+												<div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
 													<div class="card-title m-0">
-														<div class="symbol symbol-50px w-50px bg-light">
-															<img src="assets/media/svg/brand-logos/xing-icon.svg" alt="image" class="p-3" />
-														</div>
-													</div>
-													<div class="card-toolbar">
-														<span class="badge badge-light-secondary fw-bold me-3 px-4 py-3 fs-6">
-															<span class="svg-icon svg-icon-primary svg-icon-1x">
-																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																	<defs/>
-																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																		<polygon points="0 0 24 0 24 24 0 24"/>
-																		<path fill="grey" d="M16.5,4.5 C14.8905,4.5 13.00825,6.32463215 12,7.5 C10.99175,6.32463215 9.1095,4.5 7.5,4.5 C4.651,4.5 3,6.72217984 3,9.55040872 C3,12.6834696 6,16 12,19.5 C18,16 21,12.75 21,9.75 C21,6.92177112 19.349,4.5 16.5,4.5 Z" fill="#000000" fill-rule="nonzero"/>
-																	</g>
-																</svg>
-															</span>
-														</span>
-														<span class="badge badge-light-secondary fw-bold me-auto px-4 py-3 fs-6">Share guide</span>
+														<h3 class="fw-bold m-0">Workspace settings</h3>
 													</div>
 												</div>
-												<div class="card-body pt-9 pb-3">
-													<div class="fs-3 fw-bold text-gray-900">Create Xing account</div>
-													<p class="text-gray-500 fw-semibold fs-5 mt-1 mb-7">This is a guide to understand how to create a Xing account</p>
-													<div class="d-flex flex-wrap mb-5">
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
-															<div class="fs-6 text-gray-800 fw-bold">3 minutes</div>
-															<div class="fw-semibold text-gray-500">Duration</div>
+												<div id="kt_account_settings_profile_details" class="collapse show">
+													<form id="kt_account_profile_details_form" class="form">
+														<div class="card-body border-top p-9">
+															<div class="row mb-6">
+																<label class="col-lg-4 col-form-label fw-semibold fs-6">Workspace image</label>
+																<div class="col-lg-8">
+																	<div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
+																		<div class="image-input-wrapper w-125px h-125px"></div>
+																		<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
+																			<i class="ki-duotone ki-pencil fs-7">
+																				<span class="path1"></span>
+																				<span class="path2"></span>
+																			</i>
+																			<input type="file" id="image_input" name="image" accept=".png, .jpg, .jpeg" onchange="uploadImage()"/>
+																			<input type="hidden" name="image_remove" />
+																		</label>
+																		<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel image">
+																			<i class="ki-duotone ki-cross fs-2">
+																				<span class="path1"></span>
+																				<span class="path2"></span>
+																			</i>
+																		</span>
+																		<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" onclick="removeProfileImage()" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove image">
+																			<i class="ki-duotone ki-cross fs-2">
+																				<span class="path1"></span>
+																				<span class="path2"></span>
+																			</i>
+																		</span>
+																		<input id="image_url" type="hidden">
+																		<script>
+																			function removeProfileImage() {
+																				$('#image_url').val('');
+																			}
+																			function uploadImage() {
+																				api_file_upload('image_input', (file_url) => {
+																					console.log(file_url);
+																					$('#image_url').val(file_url);
+																				});
+																			}
+																		</script>
+																	</div>
+																	<div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+																</div>
+															</div>
+															<div class="row mb-6">
+																<label class="col-lg-4 col-form-label fw-semibold fs-6">Name</label>
+																<div class="col-lg-8 fv-row">
+																	<input id="name" type="text" class="form-control form-control-lg form-control-solid" placeholder="Name"/>
+																</div>
+															</div>
 														</div>
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
-															<div class="fs-6 text-gray-800 fw-bold">5</div>
-															<div class="fw-semibold text-gray-500">Steps</div>
+														<div class="card-footer">
+															<div class="row">
+																<div class="col-lg-6 d-flex">
+																	<button type="button" data-bs-toggle="modal" data-bs-target="#modal-delete" class="btn btn-danger me-2">Delete workspace</button>
+																</div>	
+																<div class="col-lg-6 d-flex justify-content-end">
+																	<button type="button" onclick="loadWorkspace()" class="btn btn-light btn-active-light-primary me-2">Discard</button>
+																	<button type="button" class="btn btn-primary" onclick="api_request('PUT', 'workspace', {
+																		session_token: session_token_get(),
+																		workspace_id: localStorage.getItem('workspace_id'),
+																		name: $('#name').val(),
+																		image: $('#image_url').val(),
+																	}, (response) => {
+																		loadWorkspace();
+																		notification({
+																			body: 'Your workspace settings have been updated.'
+																		});
+																	});">Save Changes</button>
+																</div>	
+															</div>
 														</div>
-													</div>
+													</form>
 												</div>
-											</a>
-										</div>
-
-										<div class="col-md-6 col-xl-4">
-											<a href="guide.html" class="card border-hover-primary">
-												<div class="card-header border-0 pt-9">
-													<div class="card-title m-0">
-														<div class="symbol symbol-50px w-50px bg-light">
-															<img src="assets/media/svg/brand-logos/xing-icon.svg" alt="image" class="p-3" />
-														</div>
-													</div>
-													<div class="card-toolbar">
-														<span class="badge badge-light-secondary fw-bold me-3 px-4 py-3 fs-6">
-															<span class="svg-icon svg-icon-primary svg-icon-1x">
-																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																	<defs/>
-																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																		<polygon points="0 0 24 0 24 24 0 24"/>
-																		<path fill="grey" d="M16.5,4.5 C14.8905,4.5 13.00825,6.32463215 12,7.5 C10.99175,6.32463215 9.1095,4.5 7.5,4.5 C4.651,4.5 3,6.72217984 3,9.55040872 C3,12.6834696 6,16 12,19.5 C18,16 21,12.75 21,9.75 C21,6.92177112 19.349,4.5 16.5,4.5 Z" fill="#000000" fill-rule="nonzero"/>
-																	</g>
-																</svg>
-															</span>
-														</span>
-														<span class="badge badge-light-secondary fw-bold me-auto px-4 py-3 fs-6">Share guide</span>
-													</div>
-												</div>
-												<div class="card-body pt-9 pb-3">
-													<div class="fs-3 fw-bold text-gray-900">Create Xing account</div>
-													<p class="text-gray-500 fw-semibold fs-5 mt-1 mb-7">This is a guide to understand how to create a Xing account</p>
-													<div class="d-flex flex-wrap mb-5">
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
-															<div class="fs-6 text-gray-800 fw-bold">3 minutes</div>
-															<div class="fw-semibold text-gray-500">Duration</div>
-														</div>
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
-															<div class="fs-6 text-gray-800 fw-bold">5</div>
-															<div class="fw-semibold text-gray-500">Steps</div>
-														</div>
-													</div>
-												</div>
-											</a>
-										</div>
-
-										<div class="col-md-6 col-xl-4">
-											<a href="guide.html" class="card border-hover-primary">
-												<div class="card-header border-0 pt-9">
-													<div class="card-title m-0">
-														<div class="symbol symbol-50px w-50px bg-light">
-															<img src="assets/media/svg/brand-logos/xing-icon.svg" alt="image" class="p-3" />
-														</div>
-													</div>
-													<div class="card-toolbar">
-														<span class="badge badge-light-secondary fw-bold me-3 px-4 py-3 fs-6">
-															<span class="svg-icon svg-icon-primary svg-icon-1x">
-																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																	<defs/>
-																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																		<polygon points="0 0 24 0 24 24 0 24"/>
-																		<path fill="grey" d="M16.5,4.5 C14.8905,4.5 13.00825,6.32463215 12,7.5 C10.99175,6.32463215 9.1095,4.5 7.5,4.5 C4.651,4.5 3,6.72217984 3,9.55040872 C3,12.6834696 6,16 12,19.5 C18,16 21,12.75 21,9.75 C21,6.92177112 19.349,4.5 16.5,4.5 Z" fill="#000000" fill-rule="nonzero"/>
-																	</g>
-																</svg>
-															</span>
-														</span>
-														<span class="badge badge-light-secondary fw-bold me-auto px-4 py-3 fs-6">Share guide</span>
-													</div>
-												</div>
-												<div class="card-body pt-9 pb-3">
-													<div class="fs-3 fw-bold text-gray-900">Create Xing account</div>
-													<p class="text-gray-500 fw-semibold fs-5 mt-1 mb-7">This is a guide to understand how to create a Xing account</p>
-													<div class="d-flex flex-wrap mb-5">
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
-															<div class="fs-6 text-gray-800 fw-bold">3 minutes</div>
-															<div class="fw-semibold text-gray-500">Duration</div>
-														</div>
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
-															<div class="fs-6 text-gray-800 fw-bold">5</div>
-															<div class="fw-semibold text-gray-500">Steps</div>
-														</div>
-													</div>
-												</div>
-											</a>
+											</div>
 										</div>
 
 									</div>
@@ -533,14 +434,58 @@
 			</div>
 		</div>
 
+		<!--begin::Modal - Delete-->
+		<div class="modal fade" id="modal-delete" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered mw-400px">
+				<div class="modal-content">
+					<div class="modal-header pb-0 border-0 justify-content-end">
+						<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+							<i class="ki-duotone ki-cross fs-1">
+								<span class="path1"></span>
+								<span class="path2"></span>
+							</i>
+						</div>
+					</div>
+					<div class="modal-body scroll-y pt-0">
+						<div class="mw-lg-600px mx-auto">
+							<div class="text-center">
+								<h1 class="mb-3">Delete workspace</h1>
+								<div class="mb-10 text-muted fw-semibold fs-5">
+									This action can't be undone.
+								</div>
+								<button type="button" class="btn btn-danger">Delete workspace</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--end::Modal - Delete-->
+
 		<script>
 			api_request('GET', 'user', {
 				session_token: session_token_get()
 			}, (response) => {
+				// load user
 				$('.user-name').html(response.user.first_name + ' ' + response.user.last_name);
 				$('.user-email').html(response.user.email);
 				$('.user-image').attr('src', (response.user.image ? response.user.image : 'assets/media/svg/avatars/blank.svg'));
-			});	
+			});
+			
+			function loadWorkspace() {
+				api_request('GET', 'workspace', {
+					session_token: session_token_get(),
+					workspace_id: localStorage.getItem('workspace_id')
+				}, (response) => {
+					// load workspace
+					$('.workspace-name').html(response.workspace.name + ' ' + response.workspace.name);
+					$('.workspace-image').attr('src', (response.workspace.image ? response.workspace.image : 'assets/media/svg/avatars/blank.svg'));
+					// load workspace (page)
+					$('#name').val(response.workspace.name);
+					$('.image-input-wrapper').css('background-image', 'url(' + (response.workspace.image ? response.workspace.image : 'assets/media/svg/avatars/blank.svg') + ')');
+				});	
+			}
+			loadWorkspace();
 		</script>
 
 		<!--begin::Javascript-->
@@ -574,5 +519,6 @@
 		<script src="assets/js/custom/utilities/modals/users-search.js"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
+
 	</body>
 </html>
