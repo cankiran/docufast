@@ -249,10 +249,10 @@
 												<li class="breadcrumb-item">
 													<i class="ki-duotone ki-right fs-3 text-gray-500 mx-n1"></i>
 												</li>
-												<li class="breadcrumb-item text-gray-600 fw-bold lh-1">How to create XYZ</li>
+												<li class="guide-name breadcrumb-item text-gray-600 fw-bold lh-1"></li>
 											</ul>
 											<div class="page-title d-flex align-items-center me-3">
-												<h1 class="page-heading d-flex text-gray-900 fw-bolder fs-1 flex-column justify-content-center me-2">Guide: How to create XYZ</h1>
+												<h1 class="page-heading text-gray-900 fw-bolder fs-1 justify-content-center me-2">Guide: <span class="guide-name"></span></h1>
 												<h1 class="page-heading d-flex text-gray-900 fw-normal fs-1 flex-column justify-content-center"></h1>
 											</div>
 										</div>
@@ -282,7 +282,7 @@
 												</a>
 											</div>
 											<div class="m-0">
-												<a href="#" onclick="$('.step-element').toggleClass('d-none');" class="btn btn-flex btn-sm h-35px h-md-40px btn-light fw-bold px-6">
+												<a href="#" onclick="$('.guide-element').toggleClass('d-none');" class="btn btn-flex btn-sm h-35px h-md-40px btn-light fw-bold px-6">
 													<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 														<defs/>
 														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -294,7 +294,7 @@
 													<span class="ms-2">Edit</span>
 												</a>
 											</div>
-											<a href="#" data-bs-toggle="modal" data-bs-target="#modal-share" class="btn btn-flex btn-center bg-gray-600 btn-color-white h-35px h-md-40px btn-active-dark btn-sm px-6">
+											<a id="modal-share-button" href="#" data-bs-toggle="modal" data-bs-target="#modal-share" class="btn btn-flex btn-center bg-gray-600 btn-color-white h-35px h-md-40px btn-active-dark btn-sm px-6">
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 													<defs/>
 													<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -313,64 +313,56 @@
 
 										<div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
 
-											<div class="step-element card mb-12">
+											<div class="guide-element card mb-12">
 												<div class="card-header card-header-stretch">
 													<div class="card-title d-flex align-items-center">
-														<img src="https://mytaag.s3.eu-central-1.amazonaws.com/static/images/black.png" width="50px" class="me-3">
-														<h3 class="fw-normal m-0 text-gray-800">
-															How to create XYZ
-														</h3>
-														<span class="badge badge-secondary mx-3">by Berkay Cankiran</span>
+														<img class="guide-image me-3" src="" style="width:50px; border-radius: 5px;">
+														<h3 class="guide-name fw-normal m-0 text-gray-800"></h3>
+														<span class="badge badge-secondary mx-3"><span class="me-1">by</span> <span class="guide-creator"></span></span>
 													</div> 
 												</div>
 												<div class="card-body">
-													<div class="fs-5 mb-5">
-														This is a guide about abc...
-													</div>
+													<div id="guide-description" class="fs-5 mb-5"></div>
 													<div class="d-flex flex-wrap mb-5">
 														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
-															<div class="fs-6 text-gray-800 fw-bold">3 minutes</div>
+															<div id="guide-duration" class="fs-6 text-gray-800 fw-bold"></div>
 															<div class="fw-semibold text-gray-500">Duration</div>
 														</div>
 														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
-															<div class="fs-6 text-gray-800 fw-bold">5</div>
+															<div class="guide-steps fs-6 text-gray-800 fw-bold"></div>
 															<div class="fw-semibold text-gray-500">Steps</div>
 														</div>
 													</div>
-													<!-- <label class="form-label">Tags</label> -->
-													<span class="badge badge-secondary fs-5 fw-normal">tag1</span>
-													<span class="badge badge-secondary fs-5 fw-normal">tag2</span>
-													<span class="badge badge-secondary fs-5 fw-normal">tag3</span>
+													<div id="guide-tags"></div>
 												</div>
 											</div>
 
-											<div class="step-element d-none card mb-12">
+											<div class="guide-element d-none card mb-12">
 												<div class="card-header card-header-stretch">
 													<div class="card-title d-flex align-items-center">
-														<img src="https://mytaag.s3.eu-central-1.amazonaws.com/static/images/black.png" width="50px" class="me-3">
+														<img class="guide-image me-3" src="" style="width:50px; border-radius: 5px;">
 														<h3 class="fw-normal m-0 text-gray-800">
-															<input type="text" class="form-control" placeholder="Title" value="How to create XYZ">
+															<input id="edit-guide-name" type="text" class="form-control" placeholder="Title">
 														</h3>
-														<span class="badge badge-secondary mx-3">by Berkay Cankiran</span>
+														<span class="badge badge-secondary mx-3"><span class="me-1">by</span> <span class="guide-creator"></span></span>
 													</div> 
 												</div>
 												<div class="card-body">
 													<div class="mb-5">
-														<textarea class="form-control" rows="3" placeholder="Enter a description about this guide">This is a guide about abc...</textarea>
+														<textarea id="edit-guide-description" class="form-control" rows="3" placeholder="Enter a description about this guide">This is a guide about abc...</textarea>
 													</div>
 													<div class="d-flex flex-wrap mb-5">
 														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
-															<div class="fs-6 text-gray-800 fw-bold"><input type="text" class="form-control" placeholder="3 minutes" value="3 minutes"></div>
+															<div class="fs-6 text-gray-800 fw-bold"><input id="edit-guide-duration" type="text" class="form-control" placeholder="3 minutes" value="3 minutes"></div>
 															<div class="fw-semibold text-gray-500">Duration</div>
 														</div>
 														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
-															<div class="fs-6 text-gray-800 fw-bold">5</div>
+															<div class="guide-steps fs-6 text-gray-800 fw-bold"></div>
 															<div class="fw-semibold text-gray-500">Steps</div>
 														</div>
 													</div>
 													<div class="mb-5">
-														<!-- <label class="form-label">Tags</label> -->
-														<input class="form-control" value="tag1, tag2, tag3" id="edit-tags"/>
+														<input id="edit-guide-tags" class="form-control" placeholder="Enter a tag name and press enter"/>
 													</div>
 													<div>
 														<button type="button" data-bs-toggle="modal" data-bs-target="#modal-delete" class="btn btn-sm btn-danger">Delete guide</button>
@@ -378,7 +370,7 @@
 												</div>
 											</div>
 
-											<div class="step-element card mb-12">
+											<div class="guide-element card mb-12">
 												<div class="card-header card-header-stretch">
 													<div class="card-title d-flex align-items-center">
 														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -393,7 +385,7 @@
 												</div>
 											</div>
 
-											<div class="step-element d-none card mb-12">
+											<div class="guide-element d-none card mb-12">
 												<div class="card-header card-header-stretch">
 													<div class="card-title d-flex align-items-center w-100">
 														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -407,7 +399,7 @@
 												</div>
 											</div>
 
-											<div class="step-element card mb-12">
+											<div class="guide-element card mb-12">
 												<div class="card-header card-header-stretch">
 													<div class="card-title d-flex align-items-center">
 														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -424,7 +416,7 @@
 												</div>
 											</div>
 
-											<div class="step-element d-none card mb-12">
+											<div class="guide-element d-none card mb-12">
 												<div class="card-header card-header-stretch">
 													<div class="card-title d-flex align-items-center w-100">
 														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -455,7 +447,7 @@
 												</div>
 											</div>
 											
-											<div class="step-element card mb-12">
+											<div class="guide-element card mb-12">
 												<div class="card-header card-header-stretch">
 													<div class="card-title d-flex align-items-center">
 														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -469,7 +461,7 @@
 												</div>
 											</div>
 											
-											<div class="step-element d-none card mb-12">
+											<div class="guide-element d-none card mb-12">
 												<div class="card-header card-header-stretch">
 													<div class="card-title d-flex align-items-center w-100">
 														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -484,6 +476,33 @@
 											</div>
 											
 										</div>
+
+										<center>
+											<button type="button" onclick="saveGuideCanges();" class="guide-element d-none btn btn-primary" style="
+												position: fixed;
+												bottom: 20px;
+												z-index: 1000;
+												margin-left:-100px;
+												font-size: 20px;
+											">Save changes</button>
+											<script>
+												function saveGuideCanges() {
+													api_request('PUT', 'guide', {
+														guide_id: 1,
+														name: $('#edit-guide-name').val(),
+														description: $('#edit-guide-description').val(),
+														duration: $('#edit-guide-duration').val(),
+														tags: $('#edit-guide-tags').val()
+													}, (response) => {
+														loadGuide();
+														$('.guide-element').toggleClass('d-none');
+														notification({
+															body: 'Guide updated successfully',
+														});
+													});
+												}	
+											</script>
+										</center>
 
 									</div>
 								</div>
@@ -628,8 +647,32 @@
 				$('.user-name').html(response.user.first_name + ' ' + response.user.last_name);
 				$('.user-email').html(response.user.email);
 				$('.user-image').attr('src', (response.user.image ? response.user.image : 'assets/media/svg/avatars/blank.svg'));
-			});	
+			});
 			workspaces_load();
+
+			function loadGuide() {
+				api_request('GET', 'guide', {
+					session_token: session_token_get(),
+					guide_id: get_parameters().id
+				}, (response) => {
+					$('.guide-creator').html(response.guide.creator);
+					$('.guide-name').html(response.guide.name);
+					$('#guide-description').html(response.guide.description);
+					$('.guide-image').attr('src', (response.guide.image ? response.guide.image : 'assets/media/svg/avatars/blank.svg'));
+					$('#guide-duration').html(response.guide.duration);
+					$('#guide-tags').html('');
+					response.guide.tags.forEach(tag => {
+						$('#guide-tags').append(`<span class="badge badge-secondary fs-5 me-2 fw-normal">`+tag+`</span>`);
+					});
+					$('.guide-steps').html(response.guide.steps.length);
+					
+					$('#edit-guide-name').val(response.guide.name);
+					$('#edit-guide-description').html(response.guide.description);
+					$('#edit-guide-duration').val(response.guide.duration);
+					$('#edit-guide-tags').val(response.guide.tags);
+				});	
+			}
+			loadGuide();
 		</script>
 
 		<!--begin::Javascript-->
@@ -665,7 +708,10 @@
 		<!--end::Javascript-->
 
 		<script>
-			new Tagify(document.querySelector("#edit-tags"));
+			new Tagify(document.querySelector("#edit-guide-tags"));
+			if (get_parameters().share) {
+				document.getElementById("modal-share-button").click();
+			}
 		</script>
 
 	</body>
