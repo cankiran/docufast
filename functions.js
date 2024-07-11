@@ -105,7 +105,7 @@ function session_token_check() {
 		api_request("GET", "session", {
 			session_token: localStorage.getItem("session_token"),
 		}, (response) => {
-			window.location.href = "guides.html";
+			window.location.href = "workspaces.html";
 		});
 	}
 }
@@ -137,4 +137,24 @@ function notification(parameters) {
         </div>
     </div>`);
 
+}
+
+// workspaces
+
+function workspaces_load() {
+	api_request('GET', 'user/workspaces', {
+		session_token: session_token_get()
+	}, (response) => {
+		$('#user-workspaces').html('');
+		response.workspaces.forEach(workspace => {
+			$('#user-workspaces').append(`
+				<div class="menu-item px-3 my-0">
+					<a href="guides.html" onclick="localStorage.setItem('workspace_id', `+workspace.id+`)" class="menu-link px-3 py-2">
+						<img src="`+(workspace.image ? workspace.image : 'assets/media/svg/avatars/blank.svg')+`" style="width: 35px; border-radius: 5px; margin-right: 10px;" alt="">
+						<span class="workspace-name-`+workspace.id+` menu-title">`+workspace.name+`</span>
+					</a>
+				</div>
+			`);
+		});
+	});
 }
