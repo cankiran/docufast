@@ -241,7 +241,7 @@
 			}, (response) => {
 				response.workspaces.forEach(workspace => {
 					$('#workspaces').append(`
-						<div class="col-md-6 col-xl-4">
+						<div class="col-md-6">
 							<a href="guides.html" onclick="localStorage.setItem('workspace_id', `+workspace.id+`)" class="card border-hover-primary">
 								<div class="card-body pt-9 pb-3 text-center">
 									<div class="mb-5">
