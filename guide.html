@@ -525,7 +525,7 @@
 							</i>
 						</div>
 					</div>
-					<div class="modal-body scroll-y pt-0 pb-15">
+					<div class="modal-body scroll-y pt-0 pb-10">
 						<div class="mw-lg-600px mx-auto">
 							<div class="mb-13 text-center">
 								<h1 class="mb-3">Share guide</h1>
@@ -535,20 +535,35 @@
 							</div>
 							<div class="d-flex align-items-center mb-10">
 								<div class="flex-grow-1">
-									<span class="fs-6 fw-semibold text-gray-800 d-block">Share via link</span>
+									<span class="fs-5 fw-semibold text-gray-800 d-block">Share via link</span>
 									<span class="fs-7 fw-semibold text-muted">Share this guide to anyone with a link, they don't need an account to view it.</span>
 								</div>
-								<label class="form-check form-switch form-check-custom form-check-solid">
-									<input class="form-check-input" type="checkbox" value="1" checked="checked" />
+								<label id="share-via-link-toggle" onclick="toogleShareViaLinkSettings()" class="form-check form-switch form-check-custom form-check-solid">
+									<input id="share-via-link-checkbox" class="form-check-input" type="checkbox"/>
 									<span class="form-check-label">Allowed</span>
 								</label>
 							</div>
-							<div class="mb-10">
+							<div id="share-via-link-area" class="mb-10 d-none">
 								<h4 class="fs-5 fw-semibold text-gray-800">Link to guide</h4>
 								<div class="d-flex">
-									<input id="share-link" type="text" class="form-control form-control-solid me-3 flex-grow-1" value="https://guide.docufast.ai/ABC123" disabled/>
+									<input id="share-link" type="text" class="form-control form-control-solid me-3 flex-grow-1" value="https://guide.docufast.ai/" disabled/>
 									<button id="share-link-copy" type="button" onclick="copyShareLink()" class="btn btn-light fw-bold flex-shrink-0">Copy link</button>
 									<script>
+										function toogleShareViaLinkSettings() {
+											api_request('PUT', 'guide', {
+												session_token: session_token_get(),
+												guide_id: get_parameters().id,
+												toggle_share_via_link: true
+											}, (response) => {
+												if (response.guide.share_via_link == 1) {
+													$('#share-via-link-area').removeClass('d-none');
+												}
+												else {
+													$('#share-via-link-area').addClass('d-none');
+												}
+											});
+										}
+
 										function copyShareLink() {
 											var textToCopy = $('#share-link').val();
 											navigator.clipboard.writeText(textToCopy).then(function() {
@@ -665,6 +680,11 @@
 						$('#guide-tags').append(`<span class="badge badge-secondary fs-5 me-2 fw-normal">`+tag+`</span>`);
 					});
 					$('.guide-steps').html(response.guide.steps.length);
+					if (response.guide.share_via_link == 1) {
+						$('#share-via-link-checkbox').attr('checked', 'checked');
+						$('#share-via-link-area').removeClass('d-none');
+					}
+					$('#share-link').val('https://guide.docufast.ai/'+response.guide.path);
 					
 					$('#edit-guide-name').val(response.guide.name);
 					$('#edit-guide-description').html(response.guide.description);
