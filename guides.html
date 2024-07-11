@@ -462,6 +462,28 @@
 						</div>
 					`);
 				});
+				if (!response.guides.length) {
+					$('#guides').append(`
+						<div class="col-md-8 mx-auto">
+							<div class="card">
+								<div class="card-body">
+									<div class="card-px text-center pt-15 pb-15">
+										<h2 class="fs-2x fw-bold mb-0">No guides found</h2>
+										<p class="text-gray-500 fs-4 fw-semibold py-7">
+											You don't have any guides yet.<br>Create a new guide to get started.
+										</p>
+										<a href="#" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#modal-create-guide">
+											Create new guide
+										</a>
+									</div>
+									<div class="text-center pb-15 px-5">
+										<img src="https://preview.keenthemes.com/metronic8/demo46/assets/media/illustrations/sketchy-1/17.png" alt="" class="mw-100 h-200px h-sm-325px"/>          
+									</div>
+								</div>
+							</div>
+						</div>
+					`);
+				}
 			})
 			function shareGuide(id) {
 				event.preventDefault();
