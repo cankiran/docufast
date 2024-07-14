@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:type" content="article" />
-		<meta property="og:title" content="" />
+		<meta property="og:title" content="DocuFast" />
 		<meta property="og:url" content="" />
 		<meta property="og:site_name" content="" />
 		<link rel="canonical" href="" />
@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Vendor Stylesheets(used for this page only)-->
+		<link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Vendor Stylesheets-->
 		<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
@@ -28,148 +29,78 @@
 		<!-- Custom JS -->
 		<script src="functions.js"></script>
 	</head>
-	<body id="kt_app_body" data-kt-app-header-fixed="true" data-kt-app-header-fixed-mobile="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+	<body id="kt_app_body" data-kt-app-header-fixed="true" data-kt-app-header-fixed-mobile="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" class="app-default">
 		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
 		<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
 			<div class="app-page flex-column flex-column-fluid" id="kt_app_page">
-				<div id="kt_app_header" class="app-header">
-					<div class="app-container container-fluid d-flex align-items-stretch justify-content-between" id="kt_app_header_container">
-						<div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show sidebar menu">
-							<div class="btn btn-icon btn-color-white btn-active-color-primary w-35px h-35px" id="kt_app_sidebar_mobile_toggle">
-								<i class="ki-duotone ki-abstract-14 fs-2">
-									<span class="path1"></span>
-									<span class="path2"></span>
-								</i>
+
+				<div id="kt_app_header" class="app-header d-flex flex-column flex-stack">
+					<div class="d-flex flex-stack flex-grow-1">
+
+						<div class="app-header-logo d-flex align-items-center ps-lg-12" id="kt_app_header_logo">
+							<div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-sm btn-icon bg-body btn-color-gray-500 btn-active-color-primary w-30px h-30px ms-n2 me-4 d-none d-lg-flex" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="app-sidebar-minimize">
+								<i class="ki-outline ki-abstract-14 fs-3 mt-1"></i>
 							</div>
-						</div>
-						<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-5 me-lg-0">
-							<a href="#">
-								<img alt="Logo" src="assets/img/docufast-logo-white.png" class="d-none d-sm-block" style="width:130px;" />
-								<img alt="Logo" src="assets/img/docufast-logo-white-small.png" class="d-block d-sm-none" style="width:35px;" />
+							<div class="btn btn-icon btn-active-color-primary w-35px h-35px ms-3 me-2 d-flex d-lg-none" id="kt_app_sidebar_mobile_toggle">
+								<i class="ki-outline ki-abstract-14 fs-2"></i>
+							</div>
+							<a href="index.html" class="app-sidebar-logo">
+								<img alt="Logo" src="assets/img/docufast-logo.png" class="h-25px theme-light-show" />
+								<img alt="Logo" src="assets/img/docufast-logo-white.png" class="h-25px theme-dark-show" />
 							</a>
 						</div>
-						<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
-							<div class="app-header-menu app-header-mobile-drawer align-items-stretch" style="margin-left: 50px;" data-kt-drawer="true" data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_header_menu_toggle" data-kt-swapper="true" data-kt-swapper-mode="{default: 'append', lg: 'prepend'}" data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
-								<div class="menu menu-rounded menu-active-bg menu-state-primary menu-column menu-lg-row menu-title-gray-700 menu-icon-gray-500 menu-arrow-gray-500 menu-bullet-gray-500 my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
 
-									<div class="menu-item">
-										<span class="menu-link">
-											<span class="menu-title">
-												<a href="workspaces.html" class="menu-title-link-active">Workspaces</a>	
-											</span>
-											<span class="menu-arrow d-lg-none"></span>
+						<div class="app-navbar flex-grow-1 justify-content-end" id="kt_app_header_navbar">
+
+							<div class="app-navbar-item d-flex align-items-stretch flex-lg-grow-1">
+								<!--begin::Search-->
+								<div id="kt_header_search" class="header-search d-flex align-items-center w-lg-350px" data-kt-search-keypress="true" data-kt-search-min-length="2" data-kt-search-enter="enter" data-kt-search-layout="menu" data-kt-search-responsive="true" data-kt-menu-trigger="auto" data-kt-menu-permanent="true" data-kt-menu-placement="bottom-start">
+									<div data-kt-search-element="toggle" class="search-toggle-mobile d-flex d-lg-none align-items-center">
+										<div class="d-flex">
+											<i class="ki-outline ki-magnifier fs-1 fs-1"></i>
+										</div>
+									</div>
+									<form data-kt-search-element="form" class="d-none d-lg-block w-100 position-relative mb-5 mb-lg-0" autocomplete="off">
+										<input type="hidden" />
+										<i class="ki-outline ki-magnifier search-icon fs-2 text-gray-500 position-absolute top-50 translate-middle-y ms-5"></i>
+										<input type="text" class="search-input form-control form-control border h-lg-45px ps-13" name="search" value="" placeholder="Search..." data-kt-search-element="input" />
+										<span class="search-spinner position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-5" data-kt-search-element="spinner">
+											<span class="spinner-border h-15px w-15px align-middle text-gray-500"></span>
 										</span>
-									</div>
-
-									<style>
-										.menu-title-link {
-											color: #E1D3FF !important;
-										}
-										.menu-title-link:hover {
-											color: #fff !important;
-										}
-										.menu-title-link-active {
-											color: #fff !important;
-										}
-									</style>
-
-								</div>
-							</div>
-							<div class="app-navbar flex-shrink-0">
-
-								<div class="app-navbar-item ms-5" id="kt_header_user_menu_toggle">
-									<div class="cursor-pointer symbol symbol-35px symbol-md-40px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-										<img class="user-image symbol symbol-35px symbol-md-40px" src="" alt="user-image" />
-									</div>
-									<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px" data-kt-menu="true">
-										<div class="menu-item px-3">
-											<div class="menu-content d-flex align-items-center px-3">
-												<div class="symbol symbol-50px me-5">
-													<img class="user-image" alt="user-image" src="" />
+										<span class="search-reset btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-4" data-kt-search-element="clear">
+											<i class="ki-outline ki-cross fs-2 fs-lg-1 me-0"></i>
+										</span>
+									</form>
+									<div data-kt-search-element="content" class="menu menu-sub menu-sub-dropdown py-7 px-7 overflow-hidden w-300px w-md-350px">
+										<div data-kt-search-element="wrapper">
+											<div class="" data-kt-search-element="main">
+												<div class="d-flex flex-stack fw-semibold mb-4">
+													<span class="text-muted fs-6 me-2">Guides:</span>
 												</div>
-												<div class="d-flex flex-column">
-													<div class="user-name fw-bold d-flex align-items-center fs-5"></div>
-													<a href="#" class="user-email fw-semibold text-muted text-hover-primary fs-7"></a>
+												<div class="scroll-y mh-200px mh-lg-325px">
+													<div class="d-flex align-items-center mb-5">
+														<div class="symbol symbol-40px me-4">
+															<span class="symbol-label bg-light">
+																<i class="ki-outline ki-laptop fs-2 text-primary"></i>
+															</span>
+														</div>
+														<div class="d-flex flex-column">
+															<a href="#" class="fs-6 text-gray-800 text-hover-primary fw-semibold">Guide title</a>
+															<span class="fs-7 text-muted fw-semibold">XXX steps</span>
+														</div>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="separator my-2"></div>
-										<div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
-											<a href="#" class="menu-link px-5">
-												<span class="menu-title position-relative">
-													Workspaces
-												</span>
-												<!-- <span class="me-8 position-absolute translate-middle-y end-0" style="top:38%; cursor:pointer;">
-													<span class="workspace-name badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">MyTaag 1</span>
-												</span> -->
-											</a>
-											<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-gray-500 menu-active-bg menu-state-color fw-semibold py-4 fs-base w-250px">
-												<div id="user-workspaces"></div>
-												<div class="menu-item px-3 my-0">
-													<a href="#" class="menu-link px-3 py-2" data-bs-toggle="modal" data-bs-target="#modal-create-workspace">
-														<img src="https://taag.co/assets/img/create-company-plus.png" style="width: 35px; border-radius: 5px; margin-right: 10px;" alt="">
-														<span class="menu-title">Create workspace</span>
-													</a>
-												</div>
-											</div>
-										</div>
-										<div class="separator my-2"></div>
-										<div class="menu-item px-5">
-											<a href="settings-account.html" class="menu-link px-5">Account settings</a>
-										</div>
-										<div class="menu-item px-5">
-											<a href="settings-plan.html" class="menu-link px-5">Subscription plan</a>
-											<span class="me-8 position-absolute translate-middle-y end-0" style="top:70%; cursor:pointer;">
-												<span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
-											</span>
-										</div>
-										<div class="separator my-2"></div>
-										<div class="menu-item px-5">
-											<a href="#" onclick="session_token_delete()" class="menu-link px-5">Sign Out</a>
 										</div>
 									</div>
 								</div>
-
-								<div class="app-navbar-item d-lg-none ms-2 me-n2" title="Show header menu">
-									<div class="btn btn-icon btn-color-white btn-active-color-primary w-30px h-30px w-md-35px h-md-35px" id="kt_app_header_menu_toggle">
-										<i class="ki-duotone ki-text-align-left fs-2 fs-md-1 fw-bold">
-											<span class="path1"></span>
-											<span class="path2"></span>
-											<span class="path3"></span>
-											<span class="path4"></span>
-										</i>
-									</div>
-								</div>
-
 							</div>
-						</div>
-					</div>
-				</div>
 
-				<div class="app-wrapper d-flex" style="margin: 65px 0px 0px 0px !important;">
-					<div class="app-container container-fluid" style="padding-left: 0px !important;">
-						<div class="app-main flex-column flex-row-fluid">
-							<div class="d-flex flex-column flex-column-fluid">
-								<div id="kt_app_toolbar" class="app-toolbar">
-									<div class="d-flex flex-stack flex-row-fluid">
-										<div class="d-flex flex-column flex-row-fluid">
-											<ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-3">
-												<li class="breadcrumb-item text-gray-600 fw-bold lh-1">
-													<a href="#" class="text-white text-hover-primary">
-														<i class="ki-duotone ki-home text-gray-500 fs-2"></i>
-													</a>
-												</li>
-												<li class="breadcrumb-item">
-													<i class="ki-duotone ki-right fs-3 text-gray-500 mx-n1"></i>
-												</li>
-												<li class="breadcrumb-item text-gray-600 fw-bold lh-1">Workspaces</li>
-											</ul>
-											<div class="page-title d-flex align-items-center me-3">
-												<h1 class="page-heading d-flex text-gray-900 fw-bolder fs-1 flex-column justify-content-center my-0">Workspaces</h1>
-											</div>
-										</div>
-										<div class="d-flex align-items-center gap-3 gap-lg-5">
-											<a href="#" class="btn btn-flex btn-center bg-gray-600 btn-color-white h-35px h-md-40px btn-active-dark btn-sm px-6" data-bs-toggle="modal" data-bs-target="#modal-create-workspace">
+							<div class="app-navbar-item ms-2 ms-lg-6 me-7">
+								<div class="d-flex flex-stack flex-row-fluid">
+									<div class="d-flex align-items-center gap-3 gap-lg-5">
+										<div class="m-0">
+											<a href="#" class="btn btn-flex btn-center bg-gray-600 btn-primary h-35px h-md-40px btn-sm px-6" data-bs-toggle="modal" data-bs-target="#modal-create-workspace">
 												<i class="ki-duotone ki-plus-square fs-2 p-0 m-0">
 													<span class="path1"></span>
 													<span class="path2"></span>
@@ -180,16 +111,126 @@
 										</div>
 									</div>
 								</div>
-								<div class="app-content">
-									<div class="row g-6 g-xl-9">
+							</div>
+
+						</div>
+					</div>
+					<div class="app-header-separator"></div>
+					
+				</div>
+				<!--end::Header-->
+				<!--begin::Wrapper-->
+				<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+					<!--begin::Sidebar-->
+					<div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
+						<!--begin::Wrapper-->
+						<div class="app-sidebar-wrapper">
+							<div id="kt_app_sidebar_wrapper" class="hover-scroll-y my-5 my-lg-2 mx-4" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_header" data-kt-scroll-wrappers="#kt_app_sidebar_wrapper" data-kt-scroll-offset="50px">
+								<div id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false" class="app-sidebar-menu-primary menu menu-column menu-rounded menu-sub-indention menu-state-bullet-primary px-3 mb-5">
+									
+									<a href="workspaces.html" class="menu-item here show">
+										<span class="menu-link active">
+											<span class="menu-icon">
+												<i class="ki-outline ki-home-2 fs-2"></i>
+											</span>
+											<span class="menu-title">Workspaces</span>
+											<span class="menu-arrow"></span>
+										</span>
+									</a>
+
+								</div>
+							</div>
+							<!--begin::Footer-->
+							<div class="aside-footer flex-column-auto px-9 d-none">
+								<div class="d-flex flex-stack">
+									<div class="d-flex align-items-center">
+										<div class="symbol symbol-circle symbol-40px">
+											<img class="user-image" src="" alt="photo"/>
+										</div>
+										<div class="ms-2">
+											<a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bold lh-1">Berkay Cankiran</a>
+											<span class="text-muted fw-semibold d-block fs-7 lh-1">mail@berkoinc.com</span>
+										</div>
+									</div>
+									<div class="ms-1">
+										<div class="btn btn-sm btn-icon btn-active-color-primary position-relative me-n2" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-overflow="true" data-kt-menu-placement="right-end">
+											<i class="ki-duotone ki-setting-2 fs-1"><span class="path1"></span><span class="path2"></span></i>
+										</div>
+										<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px" data-kt-menu="true">
+											<div class="menu-item px-3">
+												<div class="menu-content d-flex align-items-center px-3">
+													<div class="symbol symbol-50px me-5">
+														<img class="user-image" alt="user-image" src="" />
+													</div>
+													<div class="d-flex flex-column">
+														<div class="user-name fw-bold d-flex align-items-center fs-5"></div>
+														<a href="#" class="user-email fw-semibold text-muted text-hover-primary fs-7"></a>
+													</div>
+												</div>
+											</div>
+											<div class="separator my-2"></div>
+											<div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-end" data-kt-menu-offset="-15px, 0">
+												<a href="#" class="menu-link px-5">
+													<span class="menu-title position-relative">
+														Workspaces
+													</span>
+													<!-- <span class="me-8 position-absolute translate-middle-y end-0" style="top:38%; cursor:pointer;">
+														<span class="workspace-name badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">MyTaag 1</span>
+													</span> -->
+												</a>
+												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-gray-500 menu-active-bg menu-state-color fw-semibold py-4 fs-base w-250px">
+													<div id="user-workspaces"></div>
+													<div class="menu-item px-3 my-0">
+														<a href="#" class="menu-link px-3 py-2" data-bs-toggle="modal" data-bs-target="#modal-create-workspace">
+															<img src="https://taag.co/assets/img/create-company-plus.png" style="width: 35px; border-radius: 5px; margin-right: 10px;" alt="">
+															<span class="menu-title">Create workspace</span>
+														</a>
+													</div>
+												</div>
+											</div>
+											<div class="separator my-2"></div>
+											<div class="menu-item px-5">
+												<a href="settings-account.html" class="menu-link px-5">Account settings</a>
+											</div>
+											<div class="menu-item px-5">
+												<a href="settings-plan.html" class="menu-link px-5">Subscription plan</a>
+												<span class="me-8 position-absolute translate-middle-y end-0" style="top:70%; cursor:pointer;">
+													<span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
+												</span>
+											</div>
+											<div class="separator my-2"></div>
+											<div class="menu-item px-5">
+												<a href="#" onclick="session_token_delete()" class="menu-link px-5">Sign Out</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--end::Footer-->
+						</div>
+						<!--end::Wrapper-->
+						
+					</div>
+					<!--end::Sidebar-->
+
+					<div class="app-main flex-column flex-row-fluid">
+						<div class="d-flex flex-column flex-column-fluid mb-5">
+							<div id="kt_app_content" class="app-content flex-column-fluid">
+								<div id="kt_app_content_container" class="app-container container-fluid">
+
+									<div class="row g-5 gx-xl-10">
+										
 										<div class="col-12 col-lg-8 mx-auto">
 											<div id="workspaces" class="row"></div>
-										</div>	
+										</div>
+										
 									</div>
+
 								</div>
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -279,27 +320,25 @@
 		<script src="assets/js/scripts.bundle.js"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Vendors Javascript(used for this page only)-->
+		<script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
 		<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 		<!--end::Vendors Javascript-->
 		<!--begin::Custom Javascript(used for this page only)-->
-		<script src="assets/js/custom/pages/user-profile/general.js"></script>
 		<script src="assets/js/widgets.bundle.js"></script>
 		<script src="assets/js/custom/widgets.js"></script>
 		<script src="assets/js/custom/apps/chat/chat.js"></script>
 		<script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-		<script src="assets/js/custom/utilities/modals/offer-a-deal/type.js"></script>
-		<script src="assets/js/custom/utilities/modals/offer-a-deal/details.js"></script>
-		<script src="assets/js/custom/utilities/modals/offer-a-deal/finance.js"></script>
-		<script src="assets/js/custom/utilities/modals/offer-a-deal/complete.js"></script>
-		<script src="assets/js/custom/utilities/modals/offer-a-deal/main.js"></script>
-		<script src="assets/js/custom/utilities/modals/create-project/type.js"></script>
-		<script src="assets/js/custom/utilities/modals/create-project/budget.js"></script>
-		<script src="assets/js/custom/utilities/modals/create-project/settings.js"></script>
-		<script src="assets/js/custom/utilities/modals/create-project/team.js"></script>
-		<script src="assets/js/custom/utilities/modals/create-project/targets.js"></script>
-		<script src="assets/js/custom/utilities/modals/create-project/files.js"></script>
-		<script src="assets/js/custom/utilities/modals/create-project/complete.js"></script>
-		<script src="assets/js/custom/utilities/modals/create-project/main.js"></script>
 		<script src="assets/js/custom/utilities/modals/users-search.js"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->

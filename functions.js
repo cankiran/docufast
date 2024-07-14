@@ -158,3 +158,10 @@ function workspaces_load() {
 		});
 	});
 }
+
+// user-menu
+if ($('.aside-footer')) {
+	setTimeout(function() {
+		$('.aside-footer').removeClass('d-none');
+	}, 250);
+}
