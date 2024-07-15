@@ -239,7 +239,7 @@
 				response.workspaces.forEach(workspace => {
 					$('#workspaces').append(`
 						<div class="col-md-6">
-							<a href="guides.html" onclick="localStorage.setItem('workspace_id', `+workspace.id+`)" class="card border-hover-primary">
+							<a href="home.html" onclick="localStorage.setItem('workspace_id', `+workspace.id+`)" class="card border-hover-primary">
 								<div class="card-body pt-9 pb-3 text-center">
 									<div class="mb-5">
 										<img src="`+(workspace.image ? workspace.image : 'assets/media/svg/avatars/blank.svg')+`" style="width:75px; border-radius:100%; object-fit:cover;" alt="image" />	
