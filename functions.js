@@ -163,5 +163,5 @@ function workspaces_load() {
 if ($('.aside-footer')) {
 	setTimeout(function() {
 		$('.aside-footer').removeClass('d-none');
-	}, 250);
+	}, 500);
 }

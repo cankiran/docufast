@@ -53,23 +53,15 @@
 						<div class="app-navbar flex-grow-1 justify-content-end" id="kt_app_header_navbar">
 
 							<div class="app-navbar-item d-flex align-items-stretch flex-lg-grow-1">
-								<!--begin::Search-->
-								<div id="kt_header_search" class="header-search d-flex align-items-center w-lg-350px" data-kt-search-keypress="true" data-kt-search-min-length="2" data-kt-search-enter="enter" data-kt-search-layout="menu" data-kt-search-responsive="true" data-kt-menu-trigger="auto" data-kt-menu-permanent="true" data-kt-menu-placement="bottom-start">
+								<div id="kt_header_search" class="header-search d-flex align-items-center w-lg-350px" data-kt-search-layout="menu" data-kt-search-responsive="true" data-kt-menu-trigger="auto" data-kt-menu-permanent="true" data-kt-menu-placement="bottom-start">
 									<div data-kt-search-element="toggle" class="search-toggle-mobile d-flex d-lg-none align-items-center">
 										<div class="d-flex">
 											<i class="ki-outline ki-magnifier fs-1 fs-1"></i>
 										</div>
 									</div>
 									<form data-kt-search-element="form" class="d-none d-lg-block w-100 position-relative mb-5 mb-lg-0" autocomplete="off">
-										<input type="hidden" />
 										<i class="ki-outline ki-magnifier search-icon fs-2 text-gray-500 position-absolute top-50 translate-middle-y ms-5"></i>
-										<input type="text" class="search-input form-control form-control border h-lg-45px ps-13" name="search" value="" placeholder="Search..." data-kt-search-element="input" />
-										<span class="search-spinner position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-5" data-kt-search-element="spinner">
-											<span class="spinner-border h-15px w-15px align-middle text-gray-500"></span>
-										</span>
-										<span class="search-reset btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-4" data-kt-search-element="clear">
-											<i class="ki-outline ki-cross fs-2 fs-lg-1 me-0"></i>
-										</span>
+										<input id="search-guides-query" onkeyup="searchGuides();" type="text" class="search-input form-control form-control border h-lg-45px ps-13" value="" placeholder="Search..." data-kt-search-element="input" />
 									</form>
 									<div data-kt-search-element="content" class="menu menu-sub menu-sub-dropdown py-7 px-7 overflow-hidden w-300px w-md-350px">
 										<div data-kt-search-element="wrapper">
@@ -77,22 +69,38 @@
 												<div class="d-flex flex-stack fw-semibold mb-4">
 													<span class="text-muted fs-6 me-2">Guides:</span>
 												</div>
-												<div class="scroll-y mh-200px mh-lg-325px">
-													<div class="d-flex align-items-center mb-5">
-														<div class="symbol symbol-40px me-4">
-															<span class="symbol-label bg-light">
-																<i class="ki-outline ki-laptop fs-2 text-primary"></i>
-															</span>
-														</div>
-														<div class="d-flex flex-column">
-															<a href="#" class="fs-6 text-gray-800 text-hover-primary fw-semibold">Guide title</a>
-															<span class="fs-7 text-muted fw-semibold">XXX steps</span>
-														</div>
-													</div>
+												<div id="search-guides-results" class="scroll-y mh-200px mh-lg-325px">
+													<span class="text-muted">Enter something to search guides...</span>
 												</div>
 											</div>
 										</div>
 									</div>
+									<script>
+										function searchGuides() {
+											$('#search-guides-results').html('');
+											api_request('get', 'guide/search', {
+												session_token: session_token_get(),
+												workspace_id: localStorage.getItem('workspace_id'),
+												query: $('#search-guides-query').val()
+											}, (response) => {
+												response.guides.forEach(guide => {
+													$('#search-guides-results').append(`
+														<div class="d-flex align-items-center mb-5">
+															<div class="symbol symbol-40px me-4">
+																<span class="symbol-label bg-light">
+																	<i class="ki-outline ki-laptop fs-2 text-primary"></i>
+																</span>
+															</div>
+															<div class="d-flex flex-column">
+																<a href="guide.html?id=`+guide.id+`" class="fs-6 text-gray-800 text-hover-primary fw-semibold">`+guide.name+`</a>
+																<span class="fs-7 text-muted fw-semibold">`+guide.steps_count+` steps</span>
+															</div>
+														</div>
+													`);
+												});
+											});
+										}	
+									</script>
 								</div>
 							</div>
 
@@ -100,15 +108,33 @@
 								<div class="d-flex flex-stack flex-row-fluid">
 									<div class="d-flex align-items-center gap-3 gap-lg-5">
 										<div class="m-0">
-											<a href="#" class="btn btn-flex btn-sm h-35px h-md-40px btn-secondary fw-bold">
+											<a id="favorite-button" href="#" class="btn btn-flex btn-sm h-35px h-md-40px btn-secondary fw-bold" onclick="toogleFavorite()">
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 													<defs/>
 													<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 														<polygon points="0 0 24 0 24 24 0 24"/>
-														<path fill="grey" d="M16.5,4.5 C14.8905,4.5 13.00825,6.32463215 12,7.5 C10.99175,6.32463215 9.1095,4.5 7.5,4.5 C4.651,4.5 3,6.72217984 3,9.55040872 C3,12.6834696 6,16 12,19.5 C18,16 21,12.75 21,9.75 C21,6.92177112 19.349,4.5 16.5,4.5 Z" fill-rule="nonzero"/>
+														<path id="favorite-heart" fill="grey" d="M16.5,4.5 C14.8905,4.5 13.00825,6.32463215 12,7.5 C10.99175,6.32463215 9.1095,4.5 7.5,4.5 C4.651,4.5 3,6.72217984 3,9.55040872 C3,12.6834696 6,16 12,19.5 C18,16 21,12.75 21,9.75 C21,6.92177112 19.349,4.5 16.5,4.5 Z" fill-rule="nonzero"/>
 													</g>
 												</svg>
 											</a>
+											<script>
+												function toogleFavorite() {
+													api_request('PUT', 'guide', {
+														session_token: session_token_get(),
+														guide_id: get_parameters().id,
+														toggle_favorite: true
+													}, (response) => {
+														if (response.guide.favorite == 1) {
+															$('#favorite-heart').attr('fill', 'white');
+															$('#favorite-button').addClass('btn-success');
+														}
+														else {
+															$('#favorite-heart').attr('fill', 'grey');
+															$('#favorite-button').removeClass('btn-success');
+														}
+													});
+												}	
+											</script>
 										</div>
 										<div class="m-0">
 											<a href="#" class="btn btn-flex btn-sm h-35px h-md-40px btn-secondary fw-bold px-6">
@@ -182,6 +208,26 @@
 												<i class="ki-outline ki-document fs-2"></i>
 											</span>
 											<span class="menu-title">Guides</span>
+											<span class="menu-arrow"></span>
+										</span>
+									</a>
+
+									<a href="guides.html?filter=created_by_me" class="menu-item here show">
+										<span class="menu-link">
+											<span class="menu-icon">
+												<i class="ki-outline ki-document fs-2"></i>
+											</span>
+											<span class="menu-title">Created by me</span>
+											<span class="menu-arrow"></span>
+										</span>
+									</a>
+
+									<a href="users.html" class="menu-item here show">
+										<span class="menu-link">
+											<span class="menu-icon">
+												<i class="ki-outline ki-profile-user fs-2"></i>
+											</span>
+											<span class="menu-title">Users & permission</span>
 											<span class="menu-arrow"></span>
 										</span>
 									</a>
@@ -278,171 +324,7 @@
 
 									<div class="row g-5 gx-xl-10">
 										
-										<div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
-
-											<div class="guide-element card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center">
-														<img class="guide-image me-3" src="" style="width:50px; border-radius: 5px;">
-														<h3 class="guide-name fw-normal m-0 text-gray-800"></h3>
-														<span class="badge badge-secondary mx-3"><span class="me-1">by</span> <span class="guide-creator"></span></span>
-													</div> 
-												</div>
-												<div class="card-body">
-													<div id="guide-description" class="fs-5 mb-5"></div>
-													<div class="d-flex flex-wrap mb-5">
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
-															<div id="guide-duration" class="fs-6 text-gray-800 fw-bold"></div>
-															<div class="fw-semibold text-gray-500">Duration</div>
-														</div>
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
-															<div class="guide-steps fs-6 text-gray-800 fw-bold"></div>
-															<div class="fw-semibold text-gray-500">Steps</div>
-														</div>
-													</div>
-													<div id="guide-tags"></div>
-												</div>
-											</div>
-
-											<div class="guide-element d-none card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center">
-														<img class="guide-image me-3" src="" style="width:50px; border-radius: 5px;">
-														<h3 class="fw-normal m-0 text-gray-800">
-															<input id="edit-guide-name" type="text" class="form-control" placeholder="Title">
-														</h3>
-														<span class="badge badge-secondary mx-3"><span class="me-1">by</span> <span class="guide-creator"></span></span>
-													</div> 
-												</div>
-												<div class="card-body">
-													<div class="mb-5">
-														<textarea id="edit-guide-description" class="form-control" rows="3" placeholder="Enter a description about this guide">This is a guide about abc...</textarea>
-													</div>
-													<div class="d-flex flex-wrap mb-5">
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
-															<div class="fs-6 text-gray-800 fw-bold"><input id="edit-guide-duration" type="text" class="form-control" placeholder="3 minutes" value="3 minutes"></div>
-															<div class="fw-semibold text-gray-500">Duration</div>
-														</div>
-														<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
-															<div class="guide-steps fs-6 text-gray-800 fw-bold"></div>
-															<div class="fw-semibold text-gray-500">Steps</div>
-														</div>
-													</div>
-													<div class="mb-5">
-														<input id="edit-guide-tags" class="form-control" placeholder="Enter a tag name and press enter"/>
-													</div>
-													<div>
-														<button type="button" data-bs-toggle="modal" data-bs-target="#modal-delete" class="btn btn-sm btn-danger">Delete guide</button>
-													</div>
-												</div>
-											</div>
-
-											<div class="guide-element card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center">
-														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-															<circle cx="50" cy="50" r="40" fill="#1B84FF"/>
-															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">1</text>
-														</svg>
-														<h3 class="fw-normal m-0 text-gray-800">
-															Navigate to
-															<a href="https://web.taag.co/company/profiles" target="_blank"><span class="badge badge-lg badge-primary">https://web.taag.co/company/profiles</span></a>
-														</h3>
-													</div>
-												</div>
-											</div>
-
-											<div class="guide-element d-none card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center w-100">
-														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-															<circle cx="50" cy="50" r="40" fill="#1B84FF"/>
-															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">1</text>
-														</svg>
-														<h3 class="fw-normal m-0 text-gray-800 w-100">
-															<input type="text" class="form-control" placeholder="Navigate to https://web.taag.co/company/profiles" value="Navigate to https://web.taag.co/company/profiles">
-														</h3>
-													</div>
-												</div>
-											</div>
-
-											<div class="guide-element card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center">
-														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-															<circle cx="50" cy="50" r="40" fill="#1B84FF"/>
-															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">2</text>
-														</svg>
-														<h3 class="fw-normal m-0 text-gray-800">
-															Click on 'XYZ'
-														</h3>
-													</div>
-												</div>
-												<div class="card-body">
-													<img class="w-100 shadow-sm" style="border-radius:10px;" src="https://mytaagbucket.s3.eu-central-1.amazonaws.com/user-files/17201779835GF69kU87xYizewdomGrD7e1WpCEY3/Screenshot%202024-07-05%20131216.png">
-												</div>
-											</div>
-
-											<div class="guide-element d-none card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center w-100">
-														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-															<circle cx="50" cy="50" r="40" fill="#1B84FF"/>
-															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">2</text>
-														</svg>
-														<h3 class="fw-normal m-0 text-gray-800 w-100">
-															<input type="text" class="form-control" placeholder="Click on 'XYZ'" value="Click on 'XYZ'">
-														</h3>
-													</div>
-												</div>
-												<div class="card-body">
-													<img class="w-100 shadow-sm" style="border-radius:10px; opacity:30%;" src="https://mytaagbucket.s3.eu-central-1.amazonaws.com/user-files/17201779835GF69kU87xYizewdomGrD7e1WpCEY3/Screenshot%202024-07-05%20131216.png">
-													<div style="position:absolute; top:50%; left:42%;">
-														<a href="#" class="btn btn-flex btn-center btn-color-white h-35px h-md-40px btn-sm px-6" style="background:#1B84FF;">
-															<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																<defs/>
-																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																	<rect x="0" y="0" width="24" height="24"/>
-																	<path fill="#fff" d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z" fill-rule="nonzero" opacity="0.8"/>
-																	<rect fill="#fff" opacity="0.8" x="11" y="2" width="2" height="14" rx="1"/>
-																	<path fill="#fff" d="M12.0362375,3.37797611 L7.70710678,7.70710678 C7.31658249,8.09763107 6.68341751,8.09763107 6.29289322,7.70710678 C5.90236893,7.31658249 5.90236893,6.68341751 6.29289322,6.29289322 L11.2928932,1.29289322 C11.6689749,0.916811528 12.2736364,0.900910387 12.6689647,1.25670585 L17.6689647,5.75670585 C18.0794748,6.12616487 18.1127532,6.75845471 17.7432941,7.16896473 C17.3738351,7.57947475 16.7415453,7.61275317 16.3310353,7.24329415 L12.0362375,3.37797611 Z" fill-rule="nonzero"/>
-																</g>
-															</svg>
-															<span class="ms-2">Replace</span>
-														</a>
-													</div>
-												</div>
-											</div>
-
-											<div class="guide-element card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center">
-														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-															<circle cx="50" cy="50" r="40" fill="#1B84FF"/>
-															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">3</text>
-														</svg>
-														<h3 class="fw-normal m-0 text-gray-800">
-															Type 'ABC'
-														</h3>
-													</div>
-												</div>
-											</div>
-
-											<div class="guide-element d-none card mb-12">
-												<div class="card-header card-header-stretch">
-													<div class="card-title d-flex align-items-center w-100">
-														<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-															<circle cx="50" cy="50" r="40" fill="#1B84FF"/>
-															<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">3</text>
-														</svg>
-														<h3 class="fw-normal m-0 text-gray-800 w-100">
-															<input type="text" class="form-control" placeholder="Type 'ABC'" value="Type 'ABC'">
-														</h3>
-													</div>
-												</div>
-											</div>
-
-										</div>
+										<div id="guide-elements" class="col-md-10 col-lg-8 col-xl-6 mx-auto"></div>
 
 										<center>
 											<button type="button" onclick="saveGuideCanges();" class="guide-element d-none btn btn-primary" style="
@@ -455,7 +337,7 @@
 											<script>
 												function saveGuideCanges() {
 													api_request('PUT', 'guide', {
-														guide_id: 1,
+														guide_id: get_parameters().id,
 														name: $('#edit-guide-name').val(),
 														description: $('#edit-guide-description').val(),
 														duration: $('#edit-guide-duration').val(),
@@ -581,7 +463,12 @@
 								<div class="mb-10 text-muted fw-semibold fs-5">
 									This action can't be undone!
 								</div>
-								<button type="button" class="btn btn-danger">Delete guide</button>
+								<button type="button" onclick="api_request('DELETE', 'guide', {
+									session_token: session_token_get(),
+									guide_id: get_parameters().id,
+								}, (response) => {
+									window.location.href = 'guides.html';
+								});" class="btn btn-danger">Delete guide</button>
 							</div>
 						</div>
 					</div>
@@ -639,26 +526,137 @@
 					session_token: session_token_get(),
 					guide_id: get_parameters().id
 				}, (response) => {
-					$('.guide-creator').html(response.guide.creator);
-					$('.guide-name').html(response.guide.name);
-					$('#guide-description').html(response.guide.description);
-					$('.guide-image').attr('src', (response.guide.image ? response.guide.image : 'assets/media/svg/avatars/blank.svg'));
-					$('#guide-duration').html(response.guide.duration);
-					$('#guide-tags').html('');
-					response.guide.tags.forEach(tag => {
-						$('#guide-tags').append(`<span class="badge badge-secondary fs-5 me-2 fw-normal">`+tag+`</span>`);
-					});
-					$('.guide-steps').html(response.guide.steps.length);
 					if (response.guide.share_via_link == 1) {
 						$('#share-via-link-checkbox').attr('checked', 'checked');
 						$('#share-via-link-area').removeClass('d-none');
 					}
 					$('#share-link').val('https://guide.docufast.ai/'+response.guide.path);
-					
-					$('#edit-guide-name').val(response.guide.name);
-					$('#edit-guide-description').html(response.guide.description);
-					$('#edit-guide-duration').val(response.guide.duration);
+
+					if (response.guide.favorite == 1) {
+						$('#favorite-heart').attr('fill', 'white');
+						$('#favorite-button').addClass('btn-success');
+					}
+
+					$('#guide-elements').html('');
+					$('#guide-elements').append(`
+						<div class="guide-element card mb-12">
+							<div class="card-header card-header-stretch">
+								<div class="card-title d-flex align-items-center">
+									<img class="me-3" src="`+(response.guide.image_url ? response.guide.image_url : 'assets/media/svg/avatars/blank.svg')+`" style="width:50px; border-radius: 5px;">
+									<h3 class="fw-normal m-0 text-gray-800">`+response.guide.name+`</h3>
+									<span class="badge badge-secondary mx-3"><span class="me-1">by</span> `+response.guide.creator+`</span>
+								</div> 
+							</div>
+							<div class="card-body">
+								<div id="guide-description" class="fs-5 mb-5">`+(response.guide.description ? response.guide.description : '')+`</div>
+								<div class="d-flex flex-wrap mb-5">
+									<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
+										<div class="fs-6 text-gray-800 fw-bold">`+(response.guide.duration ? response.guide.duration : '')+`</div>
+										<div class="fw-semibold text-gray-500">Duration</div>
+									</div>
+									<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
+										<div class="guide-steps fs-6 text-gray-800 fw-bold">`+response.guide.steps.length+`</div>
+										<div class="fw-semibold text-gray-500">Steps</div>
+									</div>
+								</div>
+								<div id="guide-tags"></div>
+							</div>
+						</div>
+
+						<div class="guide-element d-none card mb-12">
+							<div class="card-header card-header-stretch">
+								<div class="card-title d-flex align-items-center">
+									<img class="me-3" src="`+(response.guide.image_url ? response.guide.image_url : 'assets/media/svg/avatars/blank.svg')+`" style="width:50px; border-radius: 5px;">
+									<h3 class="fw-normal m-0 text-gray-800">
+										<input id="edit-guide-name" type="text" class="form-control" placeholder="Title" value="`+response.guide.name+`">
+									</h3>
+									<span class="badge badge-secondary mx-3"><span class="me-1">by</span> `+response.guide.creator+`</span>
+								</div> 
+							</div>
+							<div class="card-body">
+								<div class="mb-5">
+									<textarea id="edit-guide-description" class="form-control" rows="3" placeholder="Enter a description about this guide">`+(response.guide.description ? response.guide.description : '')+`</textarea>
+								</div>
+								<div class="d-flex flex-wrap mb-5">
+									<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
+										<div class="fs-6 text-gray-800 fw-bold"><input id="edit-guide-duration" type="text" class="form-control" placeholder="3 minutes" value="`+(response.guide.duration ? response.guide.duration : '')+`"></div>
+										<div class="fw-semibold text-gray-500">Duration</div>
+									</div>
+									<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7">
+										<div class="fs-6 text-gray-800 fw-bold">`+response.guide.steps.length+`</div>
+										<div class="fw-semibold text-gray-500">Steps</div>
+									</div>
+								</div>
+								<div class="mb-5">
+									<input id="edit-guide-tags" value="`+response.guide.tags+`" class="form-control" placeholder="Enter a tag name and press enter"/>
+								</div>
+								<div>
+									<button type="button" data-bs-toggle="modal" data-bs-target="#modal-delete" class="btn btn-sm btn-danger">Delete guide</button>
+								</div>
+							</div>
+						</div>
+					`);
+					response.guide.tags.forEach(tag => {
+						$('#guide-tags').append(`<span class="badge badge-secondary fs-5 me-2 fw-normal">`+tag+`</span>`);
+					});
+					new Tagify(document.querySelector("#edit-guide-tags"));
+					if (get_parameters().share) {
+						document.getElementById("modal-share-button").click();
+					}
 					$('#edit-guide-tags').val(response.guide.tags);
+
+					let step_number = 1;
+					response.guide.steps.forEach(step => {
+						$('#guide-elements').append(`
+							<div class="guide-element card mb-12">
+								<div class="card-header card-header-stretch">
+									<div class="card-title d-flex align-items-center">
+										<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+											<circle cx="50" cy="50" r="40" fill="#1B84FF"/>
+											<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">`+step_number+`</text>
+										</svg>
+										<h3 class="fw-normal m-0 text-gray-800">
+											`+(step.description ? step.description : 'No description')+`
+										</h3>
+									</div>
+								</div>
+								`+(step.image_url ? `<div class="card-body">
+									<img class="w-100 shadow-sm" style="border-radius:10px;" src="`+step.image_url+`">
+								</div>` : '')+`
+							</div>
+							<div class="guide-element d-none card mb-12">
+								<div class="card-header card-header-stretch">
+									<div class="card-title d-flex align-items-center w-100">
+										<svg width="45" height="45" class="me-3" style="margin-left:-10px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+											<circle cx="50" cy="50" r="40" fill="#1B84FF"/>
+											<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">`+step_number+`</text>
+										</svg>
+										<h3 class="fw-normal m-0 text-gray-800 w-100">
+											<input type="text" class="form-control" placeholder="`+(step.description ? step.description.replace(/"/g, '&quot;') : '')+`" value="`+(step.description ? step.description.replace(/"/g, '&quot;') : '')+`">
+										</h3>
+									</div>
+								</div>
+								`+(step.image_url ? `<div class="card-body">
+									<img class="w-100 shadow-sm" style="border-radius:10px; opacity:30%;" src="`+step.image_url+`">
+									<div style="position:absolute; top:50%; left:35%;">
+										<a href="#" class="btn btn-flex btn-center btn-color-white h-35px h-md-40px btn-sm px-6" style="background:#1B84FF;">
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+												<defs/>
+												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+													<rect x="0" y="0" width="24" height="24"/>
+													<path fill="#fff" d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z" fill-rule="nonzero" opacity="0.8"/>
+													<rect fill="#fff" opacity="0.8" x="11" y="2" width="2" height="14" rx="1"/>
+													<path fill="#fff" d="M12.0362375,3.37797611 L7.70710678,7.70710678 C7.31658249,8.09763107 6.68341751,8.09763107 6.29289322,7.70710678 C5.90236893,7.31658249 5.90236893,6.68341751 6.29289322,6.29289322 L11.2928932,1.29289322 C11.6689749,0.916811528 12.2736364,0.900910387 12.6689647,1.25670585 L17.6689647,5.75670585 C18.0794748,6.12616487 18.1127532,6.75845471 17.7432941,7.16896473 C17.3738351,7.57947475 16.7415453,7.61275317 16.3310353,7.24329415 L12.0362375,3.37797611 Z" fill-rule="nonzero"/>
+												</g>
+											</svg>
+											<span class="ms-2">Upload new image</span>
+										</a>
+									</div>
+								</div>` : '')+`
+							</div>
+						`);
+						step_number++;
+					});
 				});	
 			}
 			loadGuide();
@@ -693,13 +691,6 @@
 		<script src="assets/js/custom/utilities/modals/users-search.js"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
-
-		<script>
-			new Tagify(document.querySelector("#edit-guide-tags"));
-			if (get_parameters().share) {
-				document.getElementById("modal-share-button").click();
-			}
-		</script>
 
 	</body>
 </html>
