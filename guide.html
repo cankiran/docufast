@@ -521,6 +521,13 @@
 			});
 			workspaces_load();
 
+			function wrapLink(text) {
+				const pattern = /(https?:\/\/[^\s]+)/g;
+				const replacement = '<a href="$1" target="_blank" class="badge badge-primary">$1</a>';
+				const result = text.replace(pattern, replacement);
+				return result;
+			}
+
 			function loadGuide() {
 				api_request('GET', 'guide', {
 					session_token: session_token_get(),
@@ -616,12 +623,13 @@
 											<text id="number" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="35" fill="white">`+step_number+`</text>
 										</svg>
 										<h3 class="fw-normal m-0 text-gray-800">
-											`+(step.description ? step.description : 'No description')+`
+											`+wrapLink(step.description ? step.description : 'No description')+`
 										</h3>
 									</div>
 								</div>
 								`+(step.image_url ? `<div class="card-body">
 									<img class="w-100 shadow-sm" style="border-radius:10px;" src="`+step.image_url+`">
+									`+(step.mouse_pos ? '<div class="circle" style="position:absolute; left:'+(step.mouse_pos.split(',')[0]/step.screen_size.split(',')[0]*100)+'%; top:'+(step.mouse_pos.split(',')[1]/step.screen_size.split(',')[1]*100)+'%; background-color:transparent; border:1px solid red; border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%; height:20px; width:20px;"></div>' : '')+`
 								</div>` : '')+`
 							</div>
 							<div class="guide-element d-none card mb-12">

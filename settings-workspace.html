@@ -438,6 +438,7 @@
 					$('.workspace-name').html(response.workspace.name + ' ' + response.workspace.name);
 					// load workspace (page)
 					$('#name').val(response.workspace.name);
+					$('#image_url').val(response.workspace.image);
 					$('.image-input-wrapper').css('background-image', 'url(' + (response.workspace.image ? response.workspace.image : 'assets/media/svg/avatars/blank.svg') + ')');
 				});	
 			}
